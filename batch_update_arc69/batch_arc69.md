@@ -1,8 +1,8 @@
 
-# How to batch update your existing ASAs using python
+# How to batch update your existing ASAs to ARC69 using python
 
 # Prerequirements
-This guide will walk you through batch updating NFTs on Algorand to ARC69 using Python. No prior experience with Python is assumed, but you will be required to make some changes to the Python script to suit your requirements.
+This guide will walk you through batch updating NFTs on Algorand to [ARC69](https://github.com/algokittens/arc69) using Python. No prior experience with Python is assumed, but you will be required to make some changes to the Python script to suit your requirements.
 This pipeline should only be ran on a clean machine, and we recommend checking out the official algorand documentation beforehand: https://developer.algorand.org/docs/get-details/asa/
 
 ## 1) Purestake account
