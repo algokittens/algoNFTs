@@ -5,6 +5,8 @@
 This guide will walk you through batch updating NFTs on Algorand to [ARC69](https://github.com/algokittens/arc69) using Python. No prior experience with Python is assumed, but you will be required to make some changes to the Python script to suit your requirements.
 This pipeline should only be ran on a clean machine, and we recommend checking out the official algorand documentation beforehand: https://developer.algorand.org/docs/get-details/asa/
 
+Please note that I write these guides and scripts in my spare time and they come with no warranty of any kind whatsoever.  
+
 ## 1) Purestake account
 
 Go to https://developer.purestake.io/ and sign up for a free account. Once registered you will be directed to a homepage containing an algod token titled "YOUR API KEY".
