@@ -1,7 +1,7 @@
 
 # How to batch update your existing ASAs to ARC69 using python
 
-# Prerequirements
+# Pre-requirements
 This guide will walk you through batch updating NFTs on Algorand to [ARC69](https://github.com/algokittens/arc69) using Python. No prior experience with Python is assumed, but you will be required to make some changes to the Python script to suit your requirements.
 This pipeline should only be ran on a secure machine, and we recommend checking out the official algorand documentation beforehand: https://developer.algorand.org/docs/get-details/asa/
 
@@ -15,7 +15,6 @@ You will need this key to connect to the algorand network later in this guide.
 ## 2) Install Python
 
 If you do not already have Python installed, install python using Anaconda: https://www.anaconda.com/products/individual. Installing just Miniconda is fine as we will not need the other packages.
-
 
 ## 3) Install Python IDE
 We will use a Python IDE to update and run the scripts. In this guide we will use https://www.spyder-ide.org/, although if you develop in multiple languages https://code.visualstudio.com/ is a great alternative. 
@@ -35,16 +34,16 @@ and Pandas which can be installed using Anaconda, by opening up the anaconda ter
 
 ## 5) Prepare your data
 
-The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma seperated values".
+The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma separated values".
 
-For the spreadsheet, only the traits should be included as well as a collumn called 'ID' which should contain the ASA ID. None values should be called 'None'.
+For the spreadsheet, only the traits should be included as well as a column called 'ID' which should contain the ASA ID. None values should be called 'None'.
 
 This format **MUST** be followed otherwise the script will not work. 
 
 
 # Running the script
 
-For this example we will update three example NFTs: 43432985, 43432860, and 43432496, which were minted on the Testnet using the mnemonic included. It is strongly recommended to experiment with these assets before moving to the mainnet and spending real algos.
+For this example we will update three example NFTs: 43432985, 43432860, and 43432496, which were minted on the testnet using the mnemonic included. It is strongly recommended to experiment with these assets before moving to the mainnet and spending real algos.
 
 The csv file can be found in the github directory and is entitled: "example_NFT.csv".
 
@@ -79,15 +78,14 @@ This is called "YOUR API KEY" on Purestake (see ##1)
 
 
 ### e) Define your mnemonic 
-This is your algorand key. Included below is access to a tesnet account containing no real algos. In reality this should not be shared with ANYONE.
+This is your algorand key. Included below is access to a testnet account containing no real algos. In reality this should not be shared with ANYONE.
 
 ```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
 ### f) Define testnet or mainnet
-The default is tesnet. If you want to update on the mainnet set this to False:
+The default is testnet. If you want to update on the mainnet set this to False:
 
 ```testnet = True```
-
 
 ### f) Define items to update
 
@@ -127,6 +125,3 @@ https://www.randgallery.com/algo-collection/?address=43432985&testnet
 ```AlgodHTTPError: Limit Exceeded```
 
 Purestake will limit your access after updating around 500 assets. You can either wait 24 hours or make another account using a different email address.
-
-
-
