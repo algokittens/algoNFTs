@@ -13,7 +13,7 @@ from algosdk.future.transaction import AssetConfigTxn
 import pandas as pd 
 
 
-def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token, update_NFT=True, testnet=True):
+def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token, testnet=True):
     
     df = pd.read_csv(csv_path)    
     
