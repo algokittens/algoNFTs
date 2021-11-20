@@ -73,7 +73,8 @@ This url will be included in every asset. If left blank, no URL will be included
 
 
 ### d) Define your algod token
-This is called "YOUR API KEY" on Purestake (see ##1)
+This is called "YOUR API KEY" on Purestake.
+
 ``` algod_token = " " ```
 
 
