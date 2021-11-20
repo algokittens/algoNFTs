@@ -58,7 +58,7 @@ Using Spyder (or your favourite IDE) open "run_script.py". All changes should be
 
 ### a) Add the path of your csv containing your metadata.
 
-``` image_path = r" C :/Users/AlgoKittens/example_NFT.csv" ```
+``` image_path = r"C:/Users/AlgoKittens/example_NFT.csv" ```
 
 ### b) Define the description.
 This description will be included in every asset. If left blank, no URL will be included:
@@ -79,7 +79,7 @@ This is called "YOUR API KEY" on Purestake (see ##1)
 ### e) Define your mnemonic 
 This is your algorand key. Included below is access to a tesnet account containing no real algos. In reality this should not be shared with ANYONE.
 
-```mnemonic1 = " wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens " ```
+```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
 ### f) Define testnet or mainnet
 The default is tesnet. If you want to update on the mainnet set this to False:
@@ -105,10 +105,13 @@ Once all the desired changes are made run the script (play icon or F5 if you are
 ### View your NFT
 
 After updating your NFTs they can can be viewed on randgallery. Note that if you minted your NFT on the tesnet, you need the '&testnet’ flag at the end of the NFT to view.
+
 Example NFT 1:
 https://www.randgallery.com/algo-collection/?address=43432496&testnet
+
 Example NFT 2:
 https://www.randgallery.com/algo-collection/?address=43432860&testnet
+
 Example NFT 3:
 https://www.randgallery.com/algo-collection/?address=43432985&testnet
 
