@@ -13,10 +13,10 @@ Always run things on the tesnet first, and it is strongly recommended to refer t
 
 ## In Progress:
 
-### b) Batch minting NFTs using ARC69
+### a) Batch minting NFTs using ARC69
 
-### c) Batch opt-into ASAs
+### b) Batch opt-into ASAs
 
-### d) Batch transfer ASAs
+### c) Batch transfer ASAs
 
 
