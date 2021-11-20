@@ -7,7 +7,7 @@ This pipeline should only be ran on a clean machine, and we recommend checking o
 
 ## 1) Purestake account
 
-Go to https://developer.purestake.io/ and sign up for a free account. Once registered you will be directed to a homepage containing an algod token titled "YOUR API" key.
+Go to https://developer.purestake.io/ and sign up for a free account. Once registered you will be directed to a homepage containing an algod token titled "YOUR API KEY".
 You will need this key to connect to the algorand network later in this guide.
 
 ## 2) Install Python
