@@ -23,7 +23,7 @@ We will use a Python IDE to update and run the scripts. In this guide we will us
 
 This pipeline requires two dependencies which have to be installed prior to running.
 
-AlgoSDK which can be installed using PIP, but opening up your terminal and running the following:
+AlgoSDK which can be installed using [PIP](https://pypi.org/) , by opening up your terminal and running the following:
 
 ```pip3 install py-algorand-sdk```
 
