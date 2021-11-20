@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct 27 21:51:00 2021
-
 @author: algokittens
 """
-
 import json
 from algosdk.v2client import algod
 from algosdk import mnemonic
 from algosdk.future.transaction import AssetConfigTxn
 import pandas as pd 
-
 
 def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token, testnet=True):
     
@@ -39,7 +35,6 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     
     out = json.dumps(l)
     
-    
     if (external_url==""):
         if (description==""):
             meta_data = '{"standard":"arc69", "attributes":' + out + '}' 
@@ -54,9 +49,7 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
         else:
             meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","attributes":'  + out + '}' 
             meta_data = meta_data.replace("'", '"')    
-    
-
-    
+            
     print(meta_data)
     
     pk = mnemonic.to_public_key(mnemonic1)
@@ -67,7 +60,6 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     }
     
     algod_client = algod.AlgodClient(algod_token, algod_address, headers);
-    
     
     def wait_for_confirmation(client, txid):
         """
@@ -86,9 +78,6 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     
     #   Utility function used to print created asset for account and assetid
     def print_created_asset(algodclient, account, assetid):    
-        # note: if you have an indexer instance available it is easier to just use this
-        # response = myindexer.accounts(asset_id = assetid)
-        # then use 'account_info['created-assets'][0] to get info on the created asset
         account_info = algodclient.account_info(account)
         idx = 0;
         for my_account_info in account_info['created-assets']:
@@ -101,9 +90,6 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     
     #   Utility function used to print asset holding for account and assetid
     def print_asset_holding(algodclient, account, assetid):
-        # note: if you have an indexer instance available it is easier to just use this
-        # response = myindexer.accounts(asset_id = assetid)
-        # then loop thru the accounts returned and match the account you are looking for
         account_info = algodclient.account_info(account)
         idx = 0
         for my_account_info in account_info['assets']:
@@ -116,14 +102,11 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     
     print("Account 1 address: {}".format(pk))
     
-    
-    # CREATE ASSET
     # Get network params for transactions before every transaction.
     params = algod_client.suggested_params()
     # comment these two lines if you want to use suggested params
     params.fee = 1000
     params.flat_fee = True
-    
 
     txn = AssetConfigTxn(
         sender=pk,
@@ -138,10 +121,6 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     # Send the transaction to the network and retrieve the txid.
     txid = algod_client.send_transaction(stxn)
     print(txid)
-    
-    # Retrieve the asset ID of the newly created asset by first
-    # ensuring that the creation transaction was confirmed,
-    # then grabbing the asset id from the transaction.
     
     # Wait for the transaction to be confirmed
     wait_for_confirmation(algod_client,txid)
