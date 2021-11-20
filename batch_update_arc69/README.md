@@ -53,7 +53,7 @@ Download both scripts and make sure that they are in the same folder. It very im
 
 ## 2) Open "run_script.py"
 
-Using Spyder (or your favourite IDE) open "run_script.py". All changes should be made within this script rather than update_meta_arc69 unless you need to add some additional specifications
+Using Spyder (or your favourite IDE) open "run_script.py". All changes should be made within this script rather than update_meta_arc69.py unless you need to add some additional specifications.
 
 ## 2) Edit "run_script.py"
 
@@ -119,7 +119,6 @@ https://www.randgallery.com/algo-collection/?address=43432985&testnet
 
 
 ## 4) Known issues:
-
 
 ### a) Purestake rate limiting:
 
