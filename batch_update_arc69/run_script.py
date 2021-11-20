@@ -31,4 +31,4 @@ if(update_all==False):
     
 else:
     for n in range(0,len(df)):
-        update_meta(n, csv_path, mnemonic1, external_url, description,  algod_token testnet)
+        update_meta(n, csv_path, mnemonic1, external_url, description,  algod_token, testnet)
