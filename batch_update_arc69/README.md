@@ -88,7 +88,7 @@ The default is testnet. If you want to update on the mainnet set this to False:
 
 ```testnet = True```
 
-### f) Define items to update
+### g) Define items to update
 
 Define if every NFT in the spreadsheet should be updated. If set to true, all assets will be updated.
 ```update_all = False```
