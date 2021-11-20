@@ -10,7 +10,7 @@ import pandas as pd
 from update_meta_arc69 import update_meta
 
 
-csv_path = "/home/phyto/example_NFT.csv"
+csv_path = r"C:/Users/AlgoKittens/example_NFT.csv"
 external_url = "yourwebsite.com"
 algod_token = "" #called YOUR API Key on Purestake
 mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
