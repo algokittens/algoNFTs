@@ -116,7 +116,6 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
         reserve=pk,
         freeze=None,
         note = meta_data.encode(),
-        strict_empty_address_check=False,
         clawback=None)
 
     # Sign with secret key of creator
