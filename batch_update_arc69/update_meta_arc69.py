@@ -107,13 +107,17 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     # comment these two lines if you want to use suggested params
     params.fee = 1000
     params.flat_fee = True
-
+    
     txn = AssetConfigTxn(
         sender=pk,
         sp=params,
         index=asset_id, 
+        manager=pk,
+        reserve=pk,
+        freeze=None,
         note = meta_data.encode(),
-        strict_empty_address_check=False)
+        strict_empty_address_check=False,
+        clawback=None)
 
     # Sign with secret key of creator
     stxn = txn.sign(sk)
