@@ -17,17 +17,21 @@ You will need this key to connect to the algorand network later in this guide.
 If you do not already have Python installed, install python using Anaconda: https://www.anaconda.com/products/individual. Installing just Miniconda is fine as we will not need the other packages.
 
 ## 3) Install Python IDE
-We will use a Python IDE to update and run the scripts. In this guide we will use https://www.spyder-ide.org/, although if you develop in multiple languages https://code.visualstudio.com/ is a great alternative. 
+We will use a Python IDE to update and run the scripts. Although if you develop in multiple languages https://code.visualstudio.com/ is a great alternative. 
+Spyder can be installed by opening the anaconda terminal and running the following:
+
+```conda install spyder```
+
 
 ## 4) Install Python dependencies
 
 This pipeline requires two dependencies which have to be installed prior to running.
 
-AlgoSDK which can be installed using [PIP](https://pypi.org/) , by opening up your terminal and running the following:
+AlgoSDK which can be installed using [PIP](https://pypi.org/) , by opening your terminal and running the following:
 
 ```pip3 install py-algorand-sdk```
 
-and Pandas which can be installed using Anaconda, by opening up the anaconda terminal and running the following:
+and Pandas which can be installed using Anaconda, by opening the anaconda terminal and running the following:
 
 ```conda install pandas```
 
