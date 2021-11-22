@@ -42,7 +42,7 @@ The data format for this pipeline is csv, which can be generated from excel file
 
 For the spreadsheet, only the traits should be included as well as a column called 'ID' which should contain the ASA ID. None values should be called ```None```.
 
-Additionally apostrophes ```'```, should be avoided. For example instad of ```good mornin'```, ```good morning``` should be used. 
+Additionally apostrophes ```'```, should be avoided. For example instead of: ```good mornin'```, the format: ```good morning``` should be used. 
 
 This format **MUST** be followed otherwise the script will not work. 
 
