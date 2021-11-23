@@ -19,4 +19,12 @@ Always run things on the testnet first, and it is strongly recommended to refer 
 
 ### c) Batch transfer ASAs
 
+## Other resources:
 
+### a) Randomisation NFT generator using Python:
+
+https://github.com/Jon-Becker/nft-generator-py
+
+### b) Randomisation NFT generator using JavaScript:
+
+https://github.com/HashLips/generative-art-node
