@@ -21,10 +21,10 @@ Always run things on the testnet first, and it is strongly recommended to refer 
 
 ## Other resources:
 
-### a) Randomisation NFT generator using Python:
+### a) Random NFT art generator using Python:
 
 https://github.com/Jon-Becker/nft-generator-py
 
-### b) Randomisation NFT generator using JavaScript:
+### b) Random NFT art generator using JavaScript:
 
 https://github.com/HashLips/generative-art-node
