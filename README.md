@@ -27,4 +27,4 @@ https://github.com/Jon-Becker/nft-generator-py
 
 ### b) Random NFT art generator using JavaScript:
 
-https://github.com/HashLips/generative-art-node
+https://github.com/HashLips/hashlips_art_engine
