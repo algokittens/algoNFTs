@@ -2,7 +2,7 @@
 # Overview
 
 # Intro
-This repository provides guides and scripts to batch mint, transfer and update algorand NFTs. 
+This repository provides guides and scripts to batch mint, transfer and update Algorand NFTs using Python. 
 All these scripts and guides are written in my sparetime and come with no warranty whatsoever of any kind.
 Always run things on the testnet first, and it is strongly recommended to refer to the official Algorand documentations beforehand: https://developer.algorand.org/docs/features/asa/
 
