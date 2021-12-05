@@ -96,33 +96,27 @@ This asset name will be applied to every NFT following the format asset_name + r
 
 ``` asset_name = "Test NFT #" ```
 
-### e) Define your PURESTAKE API key
-This is called "YOUR API KEY" on Purestake.
-
-``` algod_token = "" ```
-
-
-### f) Define your Pinata API key
+### e) Define your Pinata API key
 
 ``` api_key = "" ```
 
-### g) Define your Pinata Secret key
+### f) Define your Pinata Secret key
 
 ``` api_secret = "" ```
 
 
-### h) Define your mnemonic 
+### g) Define your mnemonic 
 This is your algorand key. Included below is access to a testnet account containing no real algos. In reality this should not be shared with ANYONE.
 
 ```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
-### i) Define the external URL.
+### h) Define the external URL.
 This url will be included in every asset. If left blank, no URL will be included:
 
 ``` external_url = "your_website.com"```
 
 
-### j) Define the description.
+### i) Define the description.
 This url will be included in every asset. If left blank, no description will be included:
 
 ``` description = "your awesome description goes here"```
