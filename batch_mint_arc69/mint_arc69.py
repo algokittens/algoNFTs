@@ -44,10 +44,10 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, algo
     
     l = []
     
-    for n in range(0,len(items)):
+    for i in range(0,len(items)):
         l.append({
-      "trait_type": items.index[n],
-      "value": items[n]}
+      "trait_type": items.index[i],
+      "value": items[i]}
     )
     
     out = json.dumps(l)
