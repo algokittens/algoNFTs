@@ -9,14 +9,9 @@ from algosdk import mnemonic
 from algosdk.future.transaction import AssetConfigTxn
 import pandas as pd 
 
-def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token, testnet=True):
+def update_meta (n, csv_path, mnemonic1, external_url, description, testnet=True):
     
     df = pd.read_csv(csv_path)    
-    
-    if (testnet==True):
-       algod_address = "https://testnet-algorand.api.purestake.io/ps2"
-    elif (testnet==False):
-       algod_address = "https://mainnet-algorand.api.purestake.io/ps2" 
        
     asset_id = df['ID'][n]
     
@@ -55,11 +50,15 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, algod_token,
     pk = mnemonic.to_public_key(mnemonic1)
     sk = mnemonic.to_private_key(mnemonic1)
     
-    headers = {
-        "X-API-Key": algod_token,
-    }
-    
-    algod_client = algod.AlgodClient(algod_token, algod_address, headers);
+    if (testnet==True):
+        algod_address = "https://api.testnet.algoexplorer.io"
+    elif (testnet==False):
+        algod_address = "https://api.algoexplorer.io"
+        
+    algod_token = ""
+    headers = {'User-Agent': 'py-algorand-sdk'}
+    algod_client = algod.AlgodClient(algod_token, algod_address, headers);    
+    status = algod_client.status()
     
     def wait_for_confirmation(client, txid):
         """
