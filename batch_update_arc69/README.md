@@ -109,3 +109,11 @@ https://www.randgallery.com/algo-collection/?address=43432860&testnet
 
 Example NFT 3:
 https://www.randgallery.com/algo-collection/?address=43432985&testnet
+
+
+
+## 4) Common problems:
+
+### a) Packages not loading/recognized:
+
+If you did not install Python, Spyder, or the dependencies using anaconda, you might see error messages that the packages could not be loaded. In such a scenario it is recommended to uninstall everything, and reinstall ONLY using anaconda.
