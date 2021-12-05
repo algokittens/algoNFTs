@@ -31,14 +31,13 @@ Spyder can be installed by opening the anaconda terminal and running the followi
 
 This pipeline requires three dependencies which have to be installed prior to running.
 
-AlgoSDK which can be installed using [PIP](https://pypi.org/) , by opening your terminal and running the following:
+AlgoSDK which can be installed using [PIP](https://pypi.org/), by opening your terminal and running the following:
 
 ```pip3 install py-algorand-sdk```
 
-AlgoSDK which can be installed using PIP by opening your terminal and running the following:
+Natsort which can be installed using PIP by opening your terminal and running the following:
 
 ```pip3 install natsort```
-
 
 
 Pandas which can be installed using Anaconda, by opening the anaconda terminal and running the following:
