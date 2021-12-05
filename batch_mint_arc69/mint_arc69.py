@@ -14,7 +14,7 @@ from natsort import natsorted
 import requests
 
 
-def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, algod_token, api_key, api_secret, external_url, description, testnet=True):
+def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, api_key, api_secret, external_url, description, testnet=True):
     imgs = natsorted(glob.glob(os.path.join(image_path, "*.png")))
     
     files = [('file', (str(n)+".png", open(imgs[n], "rb"))),]
@@ -30,12 +30,6 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, algo
     meta = response.json()
     
     ipfs_cid = meta['IpfsHash']
-
-    if (testnet==True):
-       algod_address = "https://testnet-algorand.api.purestake.io/ps2"
-    elif (testnet==False):
-       algod_address = "https://mainnet-algorand.api.purestake.io/ps2" 
-       
 
     d = pd.read_csv(meta_path)    
     
@@ -80,12 +74,15 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, algo
         accounts[counter]['sk'] = mnemonic.to_private_key(m)
         counter += 1
     
-    headers = {
-       "X-API-Key": algod_token,
-    }
     
-    algod_client = algod.AlgodClient(algod_token, algod_address, headers);
-    
+    if (testnet==True):
+        algod_address = "https://api.testnet.algoexplorer.io"
+    elif (testnet==False):
+        algod_address = "https://api.algoexplorer.io"
+        
+    algod_token = ""
+    headers = {'User-Agent': 'py-algorand-sdk'}
+    algod_client = algod.AlgodClient(algod_token, algod_address, headers);    
     status = algod_client.status()
     
     
