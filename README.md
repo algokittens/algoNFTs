@@ -19,7 +19,7 @@ Always run things on the testnet first, and it is strongly recommended to refer 
 
 ### b) Batch transfer ASAs
 
-### b) Batch opt-out ASAs with zero balance
+### c) Batch opt-out ASAs with zero balance
 
 ## Other resources:
 
