@@ -27,7 +27,7 @@ Spyder can be installed by opening the anaconda terminal and running the followi
 ```conda install spyder```
 
 
-## 4) Install Python dependencies
+## 5) Install Python dependencies
 
 This pipeline requires three dependencies which have to be installed prior to running.
 
@@ -45,7 +45,7 @@ Pandas which can be installed using Anaconda, by opening the anaconda terminal a
 ```conda install pandas```
 
 
-## 5) Prepare your data
+## 6) Prepare your data
 
 The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma separated values".
 
