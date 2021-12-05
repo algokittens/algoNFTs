@@ -3,10 +3,10 @@
 
 # Intro
 This repository provides guides and scripts to batch mint, transfer and update Algorand NFTs using Python. 
-All these scripts and guides are written in my sparetime and come with no warranty whatsoever of any kind.
+All these scripts and guides are written in my spare time and come with no warranty whatsoever of any kind.
 Always run things on the testnet first, and it is strongly recommended to refer to the official Algorand documentations beforehand: https://developer.algorand.org/docs/features/asa/
 
-## Availible:
+## Available:
 
 ### a) Batch minting NFTs following ARC69
 
