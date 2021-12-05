@@ -6,7 +6,7 @@ Created on Thu Sep 23 23:07:24 2021
 @author: AlgoKittens
 """
 
-from mint_asset import mint_asset
+from mint_arc69 import mint_asset
 import pandas as pd 
 
 testnet= True
