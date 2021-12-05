@@ -8,15 +8,18 @@ Always run things on the testnet first, and it is strongly recommended to refer 
 
 ## Availible:
 
-### a) Batch updating existing NFTs to ARC69
+### a) Batch minting NFTs following ARC69
 
-### b) Batch minting NFTs using ARC69
+### b) Batch updating existing NFTs to ARC69
+
 
 ## In Progress:
 
 ### a) Batch opt-into ASAs
 
 ### b) Batch transfer ASAs
+
+### b) Batch opt-out ASAs with zero balance
 
 ## Other resources:
 
