@@ -15,7 +15,6 @@ meta_path = "/media/phyto/1TB_HD/Batchguide/example_NFT.csv" #location of metada
 image_path = "/media/phyto/1TB_HD/Batchguide/images" #location of images
 unit_name = "TST"
 asset_name = "Test NFT #"
-algod_token = "" #your purestake api token goes here
 api_key = "" #your pinata key
 api_secret = "" #your pinata secret
 mnemonic1 = ""
