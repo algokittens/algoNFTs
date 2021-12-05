@@ -7,23 +7,18 @@ This pipeline should only be ran on a secure machine, and we recommend checking 
 
 Please note that I write these guides and scripts in my spare time and they come with no warranty of any kind whatsoever.  
 
-## 1) Purestake account
-
-Go to https://developer.purestake.io/ and sign up for a free account. Once registered you will be directed to a homepage containing an algod token titled "YOUR API KEY".
-You will need this key to connect to the algorand network later in this guide.
-
-## 2) Install Python
+## 1) Install Python
 
 If you do not already have Python installed, install python using Anaconda: https://www.anaconda.com/products/individual. Installing just Miniconda is fine as we will not need the other packages.
 
-## 3) Install Python IDE
+## 2) Install Python IDE
 We will use a Python IDE to update and run the scripts. Although if you develop in multiple languages https://code.visualstudio.com/ is a great alternative. 
 Spyder can be installed by opening the anaconda terminal and running the following:
 
 ```conda install spyder```
 
 
-## 4) Install Python dependencies
+## 3) Install Python dependencies
 
 This pipeline requires two dependencies which have to be installed prior to running.
 
@@ -36,7 +31,7 @@ and Pandas which can be installed using Anaconda, by opening the anaconda termin
 ```conda install pandas```
 
 
-## 5) Prepare your data
+## 4) Prepare your data
 
 The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma separated values".
 
@@ -77,24 +72,17 @@ This url will be included in every asset. If left blank, no URL will be included
 
 ``` external_url = "your_website.com"```
 
-
-### d) Define your algod token
-This is called "YOUR API KEY" on Purestake.
-
-``` algod_token = " " ```
-
-
-### e) Define your mnemonic 
+### d) Define your mnemonic 
 This is your algorand key. Included below is access to a testnet account containing no real algos. In reality this should not be shared with ANYONE.
 
 ```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
-### f) Define testnet or mainnet
+### 3) Define testnet or mainnet
 The default is testnet. If you want to update on the mainnet set this to False:
 
 ```testnet = True```
 
-### g) Define items to update
+### f) Define items to update
 
 Define if every NFT in the spreadsheet should be updated. If set to true, all assets will be updated.
 ```update_all = False```
@@ -121,13 +109,3 @@ https://www.randgallery.com/algo-collection/?address=43432860&testnet
 
 Example NFT 3:
 https://www.randgallery.com/algo-collection/?address=43432985&testnet
-
-
-
-## 4) Known issues:
-
-### a) Purestake rate limiting:
-
-```AlgodHTTPError: Limit Exceeded```
-
-Purestake will limit your access after updating around 500 assets. You can either wait 24 hours or make another account using a different email address.
