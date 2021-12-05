@@ -14,7 +14,6 @@ from natsort import natsorted
 import requests
 
 
-
 def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, algod_token, api_key, api_secret, external_url, description, testnet=True):
     imgs = natsorted(glob.glob(os.path.join(image_path, "*.png")))
     
