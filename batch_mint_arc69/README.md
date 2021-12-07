@@ -1,4 +1,4 @@
-# How to batch mint algoNFTs following the ARC69 metadata standard using python
+# Batch minting algoNFTs following the ARC69 metadata standard using Python
 
 # Pre-requirements
 This guide will walk you through batch minting NFTs on Algorand following [ARC69](https://github.com/algokittens/arc69) using Python. No prior experience with Python is assumed, but you will be required to make some changes to the Python script to suit your requirements.
