@@ -44,7 +44,7 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, api_
       "value": items[i]}
     )
     
-    out = json.dumps(l)
+    out = json.dumps(l, allow_nan=False)
     
     
     if (external_url==""):
