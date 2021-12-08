@@ -28,7 +28,7 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, testnet=True
       "value": items[n]}
     )
     
-    out = json.dumps(l)
+    out = json.dumps(l, allow_nan=False)
     
     if (external_url==""):
         if (description==""):
