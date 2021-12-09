@@ -14,7 +14,7 @@ from natsort import natsorted
 import requests
 
 
-def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, api_key, api_secret, external_url, description, testnet=True):
+def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, testnet=True):
     imgs = natsorted(glob.glob(os.path.join(image_path, "*.png")))
     
     files = [('file', (str(n)+".png", open(imgs[n], "rb"))),]
@@ -31,35 +31,50 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, api_
     
     ipfs_cid = meta['IpfsHash']
 
-    d = pd.read_csv(meta_path)    
+    if (meta_type=="csv"):
+        d = pd.read_csv(meta_path)    
+        items = d.iloc[n]
+        items = items[items != "None"]
+        items = items.dropna()
+        l = []
+        for i in range(0,len(items)):
+            l.append({
+          "trait_type": items.index[i],
+          "value": items[i]}
+        )
+        attributes = json.dumps(l, allow_nan=False)
     
-    items = d.iloc[n]
-    items = items[items != "None"]
-    
-    l = []
-    
-    for i in range(0,len(items)):
-        l.append({
-      "trait_type": items.index[i],
-      "value": items[i]}
-    )
-    
-    out = json.dumps(l, allow_nan=False)
-    
+    elif (meta_type=="JonBecker"):
+        d = pd.read_json(meta_path)    
+        d.drop('tokenId', axis=1, inplace=True)
+        items = d.iloc[n]
+        items = items[items != "None"]
+        l = []
+        for i in range(0,len(items)):
+            l.append({
+          "trait_type": items.index[i],
+          "value": items[i]}
+        )
+        attributes = json.dumps(l, allow_nan=False)
+        
+    elif (meta_type=="HashLips"):
+        d = pd.read_json(meta_path)
+        l = d['attributes'][n]
+        attributes = json.dumps(l, allow_nan=False)
     
     if (external_url==""):
         if (description==""):
-            meta_data = '{"standard":"arc69", "attributes":' + out + '}' 
+            meta_data = '{"standard":"arc69", "attributes":' + attributes + '}' 
         else:
-            meta_data = '{"standard":"arc69", "description":"' + description + '","attributes":' + out + '}' 
+            meta_data = '{"standard":"arc69", "description":"' + description + '","attributes":' + attributes + '}' 
             
     else:
         if (description==""):
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","attributes":'  + out + '}' 
+            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","attributes":'  + attributes + '}' 
             meta_data = meta_data.replace("'", '"')                
             
         else:
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","attributes":'  + out + '}' 
+            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","attributes":'  + attributes + '}' 
             meta_data = meta_data.replace("'", '"')    
     
     
