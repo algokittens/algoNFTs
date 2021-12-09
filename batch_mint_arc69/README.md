@@ -42,9 +42,9 @@ Pandas which can be installed using Anaconda, by opening the anaconda terminal a
 
 ## 5) Prepare your data
 
-The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma separated values".
+If you used the Jon Becker or HashLips tools to generate your images there is no further need to adjust the metadata and you can skip to the next section.
 
-For the spreadsheet, only the traits should be included and the row should correlate to the file number (for example the metadata for 1.png should be in the first row). None values should be called ```None```.
+If you are using a spreadsheet, the metadata should first be exported as a csv (comma separated values) file. For the spreadsheet only the traits should be included and the row should correlate to the file number (for example the metadata for 1.png should be in the first row). None values should be empty or called ```None```.
 
 Additionally apostrophes ```'```, should be avoided. For example instead of: ```good mornin'```, the format: ```good morning``` should be used. 
 
@@ -79,50 +79,55 @@ If you want to mint on the mainnet change it to:
 
 ``` meta_path = r"C:/Users/AlgoKittens/example_NFT.csv" ```
 
+### c) Add the metadata type.
 
-### c) Add the path of your folder containing your images.
+This should be either "JonBecker", "HashLips", or "csv"
+
+``` meta_type = "csv" ```
+
+### d) Add the path of your folder containing your images.
 
 ``` image_path = r"C:/Users/AlgoKittens/my_images" ```
 
 
-### c) Define the unit name.
+### e) Define the unit name.
 This unit name will be applied to every NFT following the format unit_name + row number (e.g. TST1, TST2 etc.). The unit name **MUST** be 8 characters or less including the numbers. For example, if you plan to mint 999 assets, the max unit name is 5 characters.
 
 ``` unit_name = "TST" ```
 
-### d) Define the asset name.
+### f) Define the asset name.
 
 This asset name will be applied to every NFT following the format asset_name + row number (e.g. Test #1, Test #2 etc.).
 
 ``` asset_name = "Test NFT #" ```
 
-### e) Define your Pinata API key
+### g) Define your Pinata API key
 
 ``` api_key = "" ```
 
-### f) Define your Pinata Secret key
+### h) Define your Pinata Secret key
 
 ``` api_secret = "" ```
 
 
-### g) Define your mnemonic 
+### i) Define your mnemonic 
 This is your algorand key. Included below is access to a testnet account containing no real algos. In reality this should not be shared with ANYONE.
 
 ```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
-### h) Define the external URL.
+### j) Define the external URL.
 This url will be included in every asset. If left blank, no URL will be included:
 
 ``` external_url = "your_website.com"```
 
 
-### i) Define the description.
+### k) Define the description.
 This url will be included in every asset. If left blank, no description will be included:
 
 ``` description = "your awesome description goes here"```
 
 
-### j) Define which NFTs of the csv should be minted
+### l) Define which NFTs of the csv should be minted
 To mint every NFT in the csv:
 
 ``` for n in range(0,len(df)): ```
