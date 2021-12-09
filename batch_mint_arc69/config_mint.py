@@ -12,6 +12,7 @@ import pandas as pd
 testnet= True
 
 meta_path = "/media/phyto/1TB_HD/Batchguide/example_NFT.csv" #location of metadata
+meta_type = "csv" #metadata type, valid argments = "csv", "JonBecker", "HashLips"
 image_path = "/media/phyto/1TB_HD/Batchguide/images" #location of images
 unit_name = "TST"
 asset_name = "Test NFT #"
@@ -24,4 +25,4 @@ description = ""
 
 df = pd.read_csv(meta_path)    
 for n in range(0,len(df)):
-    mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, api_key, api_secret, external_url, description, testnet=testnet)
+    mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, testnet=testnet)
