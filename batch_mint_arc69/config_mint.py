@@ -22,7 +22,14 @@ mnemonic1 = ""
 external_url = ""
 description = ""
 
+if (meta_type=="csv"):
+    df = pd.read_csv(meta_path)    
 
-df = pd.read_csv(meta_path)    
+elif (meta_type=="JonBecker"):
+    df = pd.read_json(meta_path)    
+
+elif (meta_type=="HashLips"):
+    df = pd.read_json(meta_path)    
+    
 for n in range(0,len(df)):
     mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, testnet=testnet)
