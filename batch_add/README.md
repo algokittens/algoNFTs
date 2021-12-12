@@ -42,7 +42,7 @@ This variable should point to the csv containing the assets to be added. It shou
 
 This is your algorand key. Included below is a testnet account containing no real algos. In reality this should not be shared with ANYONE.
 
-mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
+```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"```
 
 
 # Running the script
