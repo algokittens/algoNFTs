@@ -8,11 +8,12 @@ Always run things on the testnet first, and it is strongly recommended to refer 
 ## Available:
 ### a) Batch minting NFTs following ARC69
 ### b) Batch updating existing NFTs to ARC69
+### c) Batch opt-into ASAs
+### d) Fetch all holders of assets created by given address
 
 ## In Progress:
-### a) Batch opt-into ASAs
-### b) Batch transfer ASAs
-### c) Batch opt-out ASAs with zero balance
+### a) Batch transfer ASAs
+### b) Batch opt-out ASAs with zero balance
 
 ## Other resources:
 ### a) Random NFT art generator using Python:
