@@ -36,6 +36,7 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta
         items = d.iloc[n]
         items = items[items != "None"]
         items = items.dropna()
+        items = items.apply(str)
         l = []
         for i in range(0,len(items)):
             l.append({
