@@ -19,7 +19,9 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, testnet=True
     
     items = d.iloc[n]
     items = items[items != "None"]
-    
+    items = items.dropna()
+    items = items.apply(str)
+
     l = []
     
     for n in range(0,len(items)):
