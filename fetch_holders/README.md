@@ -22,7 +22,7 @@ and Pandas which can be installed using Anaconda, by opening the anaconda termin
 
 ## b) Define were the file should be saved
 
-```path_out = "/home/algokittens/OneDrive/GANG_holders.csv"```
+```path_out = "/home/algokittens/GANG_holders.csv"```
 
 
 
