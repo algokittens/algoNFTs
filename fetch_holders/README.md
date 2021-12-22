@@ -1,6 +1,7 @@
 # Fetching holders of account
 
 # Overview
+This pipeline will fetch all the holders of assets created by a provided creator address. If an holder holds more than one asset by the creator, the holder address will appear multiple times in the csv.
 
 This pipeline requires two dependencies which have to be installed prior to running.
 
