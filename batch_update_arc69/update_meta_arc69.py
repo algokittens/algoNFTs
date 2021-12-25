@@ -21,30 +21,21 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, testnet=True
     items = items[items != "None"]
     items = items.dropna()
     items = items.apply(str)
-
-    l = []
-    
-    for n in range(0,len(items)):
-        l.append({
-      "trait_type": items.index[n],
-      "value": items[n]}
-    )
-    
-    out = json.dumps(l, allow_nan=False)
+    properties = items.to_json()
     
     if (external_url==""):
         if (description==""):
-            meta_data = '{"standard":"arc69", "attributes":' + out + '}' 
+            meta_data = '{"standard":"arc69", "properties":' + properties + '}' 
         else:
-            meta_data = '{"standard":"arc69", "description":"' + description + '","attributes":' + out + '}' 
+            meta_data = '{"standard":"arc69", "description":"' + description + '","properties":' + properties + '}' 
             
     else:
         if (description==""):
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","attributes":'  + out + '}' 
+            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","properties":'  + properties + '}' 
             meta_data = meta_data.replace("'", '"')                
             
         else:
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","attributes":'  + out + '}' 
+            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","properties":'  + properties + '}' 
             meta_data = meta_data.replace("'", '"')    
             
     print(meta_data)
