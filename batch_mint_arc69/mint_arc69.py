@@ -37,47 +37,33 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta
         items = items[items != "None"]
         items = items.dropna()
         items = items.apply(str)
-        l = []
-        for i in range(0,len(items)):
-            l.append({
-          "trait_type": items.index[i],
-          "value": items[i]}
-        )
-        attributes = json.dumps(l, allow_nan=False)
+        attributes = items.to_json()
     
     elif (meta_type=="JonBecker"):
         d = pd.read_json(meta_path)    
         d.drop('tokenId', axis=1, inplace=True)
         items = d.iloc[n]
         items = items[items != "None"]
-        l = []
-        for i in range(0,len(items)):
-            l.append({
-          "trait_type": items.index[i],
-          "value": items[i]}
-        )
-        attributes = json.dumps(l, allow_nan=False)
-        
+        attributes = items.to_json()
+    
     elif (meta_type=="HashLips"):
         d = pd.read_json(meta_path)
         l = d['attributes'][n]
-        attributes = json.dumps(l, allow_nan=False)
+        records = pd.DataFrame.from_records(l).set_index('trait_type')
+        attributes = records.iloc[:,0].to_json()       
     
     if (external_url==""):
         if (description==""):
-            meta_data = '{"standard":"arc69", "attributes":' + attributes + '}' 
+            meta_data = '{"standard":"arc69", "properties":' + attributes + '}' 
         else:
-            meta_data = '{"standard":"arc69", "description":"' + description + '","attributes":' + attributes + '}' 
-            
+            meta_data = '{"standard":"arc69", "description":"' + description + '","properties":' + attributes + '}' 
     else:
         if (description==""):
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","attributes":'  + attributes + '}' 
+            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","properties":'  + attributes + '}' 
             meta_data = meta_data.replace("'", '"')                
-            
         else:
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","attributes":'  + attributes + '}' 
+            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","properties":'  + attributes + '}' 
             meta_data = meta_data.replace("'", '"')    
-    
     
     print(meta_data)
         
