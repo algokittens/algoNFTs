@@ -22,21 +22,12 @@ def update_meta (n, csv_path, mnemonic1, external_url, description, testnet=True
     items = items.dropna()
     items = items.apply(str)
     properties = items.to_json()
+
+    description_json = '"description":"' + description + '",' if description else ''
+    external_url_json = '"external_url":"' + external_url + '",' if external_url else ''
     
-    if (external_url==""):
-        if (description==""):
-            meta_data = '{"standard":"arc69", "properties":' + properties + '}' 
-        else:
-            meta_data = '{"standard":"arc69", "description":"' + description + '","properties":' + properties + '}' 
-            
-    else:
-        if (description==""):
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","properties":'  + properties + '}' 
-            meta_data = meta_data.replace("'", '"')                
-            
-        else:
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","properties":'  + properties + '}' 
-            meta_data = meta_data.replace("'", '"')    
+    meta_data = '{"standard":"arc69", ' + description_json + external_url_json + '"properties":' + properties + '}' 
+    meta_data = meta_data.replace("'", '"')    
             
     print(meta_data)
     
