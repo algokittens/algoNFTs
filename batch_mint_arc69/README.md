@@ -44,7 +44,7 @@ Pandas which can be installed using Anaconda, by opening the anaconda terminal a
 
 If you used the Jon Becker or HashLips tools to generate your images there is no further need to adjust the metadata and you can skip to the next section.
 
-If you are using a spreadsheet, the metadata should first be exported as a csv (comma separated values) file. For the spreadsheet only the traits should be included and the row should correlate to the file number (for example the metadata for 1.png should be in the first non-header row - i.e. row 2 in Excel). None values should be empty or called ```None```.
+If you are using a spreadsheet, the metadata should first be exported as a csv (comma separated values) file. For the spreadsheet only the trait names and trait data should be included. The first row (the header row) should contain the trait names, and the other rows should correlate to the file number (for example the metadata for 1.png should be in the first non-header row - i.e. row 2 in Excel). None values should be empty or called ```None```. For an example see the [example csv.](https://github.com/algokittens/algoNFTs/blob/master/batch_mint_arc69/example.csv)
 
 Additionally apostrophes ```'```, should be avoided. For example instead of: ```good mornin'```, the format: ```good morning``` should be used. 
 
