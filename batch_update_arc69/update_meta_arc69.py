@@ -8,15 +8,44 @@ from algosdk.v2client import algod
 from algosdk import mnemonic
 from algosdk.future.transaction import AssetConfigTxn
 import pandas as pd 
+import os
 
-def update_meta (n, csv_path, mnemonic1, external_url, description, testnet=True):
-    
+
+def update_by_csv_file(csv_path, external_url, mnemonic1, description, testnet, update_all, row_to_update):
+    df = pd.read_csv(csv_path)
+
+    if (update_all==False):
+        n=row_to_update-1 #run first line
+        update_meta(n, csv_path, mnemonic1, external_url, description, testnet)
+    else:
+        for n in range(0,len(df)):
+            update_meta(n, csv_path, mnemonic1, external_url, description, testnet)
+
+
+def update_by_arc69_jsons(arc69_path, mnemonic1, testnet):
+    for filename in os.listdir(arc69_path):
+        if not filename.endswith(".json"): continue
+
+        asset_id = filename.split('.')[0]
+
+        with open(os.path.join(arc69_path,filename)) as file:
+            arc69_data = json.load(file)
+            meta_data = json.dumps(arc69_data)
+            print(meta_data)
+            send_algod_request(mnemonic1, asset_id, meta_data, testnet)
+
+
+def update_meta(n, csv_path, mnemonic1, external_url, description, testnet=True):
     data_frame = pd.read_csv(csv_path)
-       
+
     asset_id = data_frame['ID'][n]
     meta_data_json = get_meta_data_json(n, external_url, description, data_frame)
     print(meta_data_json)
     
+    send_algod_request(mnemonic1, testnet, asset_id, meta_data_json)
+
+
+def send_algod_request(mnemonic1, asset_id, meta_data_json, testnet=True):
     pk = mnemonic.to_public_key(mnemonic1)
     sk = mnemonic.to_private_key(mnemonic1)
     
