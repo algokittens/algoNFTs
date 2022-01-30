@@ -42,7 +42,7 @@ def update_meta(n, csv_path, mnemonic1, external_url, description, testnet=True)
     meta_data_json = get_meta_data_json(n, external_url, description, data_frame)
     print(meta_data_json)
     
-    send_algod_request(mnemonic1, testnet, asset_id, meta_data_json)
+    send_algod_request(mnemonic1, asset_id, meta_data_json, testnet)
 
 
 def send_algod_request(mnemonic1, asset_id, meta_data_json, testnet=True):
