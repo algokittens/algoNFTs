@@ -14,7 +14,9 @@ import os
 current_dirname = os.path.dirname(__file__)
 
 # if arc69_path is not path to csv File script will handle it as folder with arc69 json files
-arc69_path = os.path.join(current_dirname, './example_NFT.csv')
+# arc69_path = os.path.join(current_dirname, './example_data/arc69_data')
+arc69_path = os.path.join(current_dirname, './example_data/example_NFT.csv')
+
 
 external_url = "yourwebsite.com"
 description = "some cool description"

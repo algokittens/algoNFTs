@@ -32,12 +32,15 @@ and Pandas which can be installed using Anaconda, by opening the anaconda termin
 
 
 ## 4) Prepare your data
-
+### Option A:
 The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma separated values".
 
 For the spreadsheet, only the traits should be included as well as a column called 'ID' which should contain the ASA ID. None values should be called ```None```.
 
-This format **MUST** be followed otherwise the script will not work. 
+### Option B:
+Put your complete ARC69 metadata files in a folder. The metadata must be filled in according to the definition (e.g. `example_data/arc69_data`). 
+
+One of these two formats **MUST** be followed otherwise the script will not work. 
 
 
 # Running the script

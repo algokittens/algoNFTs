@@ -1,0 +1,17 @@
+{
+    "standard": "arc69",
+    "description": "some cool description",
+    "external_url": "yourwebsite.com",
+    "properties": {
+        "Background": "Pink Spin",
+        "Body": "Leopard",
+        "Tattoo": "None",
+        "Beak": "None",
+        "Clothing": "Classic MNGO",
+        "Neck": "None",
+        "Mouth": "Fresh Catch",
+        "Earring": "None",
+        "Eyes": "Eyepatch",
+        "Hat": "Paper Plane"
+    }
+}
