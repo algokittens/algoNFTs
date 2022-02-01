@@ -38,7 +38,7 @@ The data format for this pipeline is csv, which can be generated from excel file
 For the spreadsheet, only the traits should be included as well as a column called 'ID' which should contain the ASA ID. None values should be called ```None```.
 
 ### Option B:
-Put your complete ARC69 metadata files in a folder. The metadata must be filled in according to the definition (e.g. `example_data/arc69_data`). 
+Put your complete ARC69 metadata files in a folder. The metadata must be filled in according to the definition (see [example_data](example_data/arc69_data/)). 
 
 One of these two formats **MUST** be followed otherwise the script will not work. 
 
@@ -78,19 +78,23 @@ This is your algorand key. Included below is access to a testnet account contain
 
 ```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
-### 3) Define testnet or mainnet
+### e) Define testnet or mainnet
 The default is testnet. If you want to update on the mainnet set this to False:
 
 ```testnet = True```
 
 ### f) Define items to update
-
 Define if every NFT in the spreadsheet should be updated. If set to true, all assets will be updated.
 ```update_all = False```
 
 If you only want to update a single row, define which row should be updated:
 
 ```row_to_update = 1 # this would update row 1```
+
+### g) Notes for preparation with [Option B](#option-b)
+`external_url` and `description` will be ignored since your ARC69 files are considered complete.
+
+`update_all` and `row_to_update` will also be ignored. In case files shouldn't be used for update, they should be moved temporarily in a different directory.
 
 
 ## 3) Run the script
