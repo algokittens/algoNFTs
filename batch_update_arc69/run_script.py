@@ -7,25 +7,28 @@ Created on Wed Oct 27 21:50:42 2021
 """
 
 import pandas as pd 
-from update_meta_arc69 import update_meta
+from update_meta_arc69 import update_by_csv_file
+from update_meta_arc69 import update_by_arc69_jsons
+import os
+
+current_dirname = os.path.dirname(__file__)
+
+# if arc69_path is not path to csv File script will handle it as folder with arc69 json files
+# arc69_path = os.path.join(current_dirname, './example_data/arc69_data')
+arc69_path = os.path.join(current_dirname, './example_data/example_NFT.csv')
 
 
-csv_path = r"C:/Users/AlgoKittens/example_NFT.csv"
 external_url = "yourwebsite.com"
-mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
 description = "some cool description"
+
+mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
 
 testnet=True
 update_all = False #if true updates every NFT in the csv
 row_to_update = 1 #update only the asset in the first row of the csv
 
 
-df = pd.read_csv(csv_path)    
-
-if (update_all==False):
-    n=row_to_update-1 #run first line
-    update_meta(n, csv_path, mnemonic1, external_url, description, testnet)
-    
+if arc69_path.endswith('.csv'):
+    update_by_csv_file(arc69_path, external_url, mnemonic1, description, testnet, update_all, row_to_update)
 else:
-    for n in range(0,len(df)):
-        update_meta(n, csv_path, mnemonic1, external_url, description, testnet)
+    update_by_arc69_jsons(arc69_path, mnemonic1, testnet)

@@ -1,0 +1,17 @@
+{
+    "standard": "arc69",
+    "description": "some cool description",
+    "external_url": "yourwebsite.com",
+    "properties": {
+        "Background": "Yellow",
+        "Body": "Classic Pink",
+        "Tattoo": "None",
+        "Beak": "None",
+        "Clothing": "Dwight",
+        "Neck": "None",
+        "Mouth": "Standard",
+        "Earring": "None",
+        "Eyes": "Kurts",
+        "Hat": "Cornrows"
+    }
+}
