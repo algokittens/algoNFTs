@@ -14,7 +14,7 @@ from natsort import natsorted
 import requests
 
 
-def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, testnet=True):
+def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_number_digits, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, use_csv_description, testnet=True):
     imgs = natsorted(glob.glob(os.path.join(image_path, "*.png")))
     
     files = [('file', (str(n)+".png", open(imgs[n], "rb"))),]
@@ -37,36 +37,36 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta
         items = items[items != "None"]
         items = items.dropna()
         items = items.apply(str)
-        attributes = items.to_json()
+        if use_csv_description:
+            description = items.pop('description')
+        attributes =  items.to_dict()
     
     elif (meta_type=="JonBecker"):
         d = pd.read_json(meta_path)    
         d.drop('tokenId', axis=1, inplace=True)
         items = d.iloc[n]
         items = items[items != "None"]
-        attributes = items.to_json()
+        attributes = items.to_dict()
     
     elif (meta_type=="HashLips"):
         d = pd.read_json(meta_path)
         l = d['attributes'][n]
         records = pd.DataFrame.from_records(l).set_index('trait_type')
-        attributes = records.iloc[:,0].to_json()       
-    
-    if (external_url==""):
-        if (description==""):
-            meta_data = '{"standard":"arc69", "properties":' + attributes + '}' 
-        else:
-            meta_data = '{"standard":"arc69", "description":"' + description + '","properties":' + attributes + '}' 
-    else:
-        if (description==""):
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","properties":'  + attributes + '}' 
-            meta_data = meta_data.replace("'", '"')                
-        else:
-            meta_data = '{"standard":"arc69"' + ',"external_url":"' + external_url + '","description":"' + description + '","properties":'  + attributes + '}' 
-            meta_data = meta_data.replace("'", '"')    
-    
-    print(meta_data)
-        
+        attributes = records.iloc[:,0].to_dict()
+
+
+    meta_data = {
+        "standard": "arc69",
+        "description": description,
+        "external_url": external_url,
+        "properties": attributes
+    }
+
+    # Remove keys with empty values
+    meta_data = { key: value for key, value in meta_data.items() if value != '' }
+
+    meta_data_json = json.dumps(meta_data)
+            
     # an accounts dict.
     accounts = {}
     counter = 1
@@ -127,15 +127,15 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta
     # comment these two lines if you want to use suggested params
     params.fee = 1000
     params.flat_fee = True
-    
+    asset_number = str(n+1)
 
     txn = AssetConfigTxn(
         sender=accounts[1]['pk'],
         sp=params,
         total= 1,
         default_frozen=False,
-        unit_name=unit_name +str(n+1),
-        asset_name=asset_name + str(n+1), 
+        unit_name=unit_name + asset_number.zfill(unit_name_number_digits),
+        asset_name=asset_name + asset_number.zfill(asset_name_number_digits), 
         manager=accounts[1]['pk'],
         reserve=accounts[1]['pk'],
         freeze=None,
@@ -143,7 +143,7 @@ def mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta
         strict_empty_address_check=False,
         url="ipfs://" +ipfs_cid,
         metadata_hash= "", 
-        note = meta_data.encode(),
+        note = meta_data_json.encode(),
 
         decimals=0)
     # Sign with secret key of creator
