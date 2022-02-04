@@ -14,7 +14,8 @@ from algosdk.v2client import indexer
 
 ## USER SETTINGS ##
 PUBLIC_KEY = "YOUR_PUBLIC_KEY"
-OUTPUT_PATH = "./your_folder/"
+OUTPUT_PATH = "./output_path/"
+CSV_BASE_ATTRIBUTES = "description" #set ARC69 base attributes you want to add to csv e.g. "description,external_url" or "" for none
 TESTNET = False
 ##################
 
@@ -53,11 +54,15 @@ def write_csv_file(data):
 
     converted_data = []
     attribute_keys = []
+    arc69_base_attributes = CSV_BASE_ATTRIBUTES.split(',') if CSV_BASE_ATTRIBUTES else ''
 
     for asset_id, asset in sortedData:
-        new_asset = {
-            'description': asset['description']
-        }
+        new_asset = {}
+
+        if arc69_base_attributes:
+            for base_attribute in arc69_base_attributes:
+                new_asset[base_attribute] = asset[base_attribute]
+
         for attribute in asset['properties'].keys():
             new_asset[attribute] = asset['properties'][attribute]
         converted_data.append(new_asset)
@@ -66,6 +71,7 @@ def write_csv_file(data):
                 attribute_keys.append(attribute)
 
     csv_file_path = f"{OUTPUT_PATH}metadata.csv"
+    check_and_create_path(csv_file_path)
     with open(csv_file_path, 'w', newline='', encoding='utf-8') as f: 
         wr = csv.DictWriter(f, fieldnames = attribute_keys) 
         wr.writeheader()
