@@ -16,6 +16,8 @@ from algosdk.v2client import indexer
 PUBLIC_KEY = "YOUR_PUBLIC_KEY"
 OUTPUT_PATH = "./output_path/"
 CSV_BASE_ATTRIBUTES = "description" #set ARC69 base attributes you want to add to csv e.g. "description,external_url" or "" for none
+CSV_ADD_ASSET_NAME = True #Adds name of the asset to csv
+CSV_ADD_IPFS_HASH = True #Adds cid column to csv
 TESTNET = False
 ##################
 
@@ -33,6 +35,8 @@ def write_meta_data_to_files(indexer, public_key):
     for asset in created_assets:
         asset_id = asset['index']
         is_deleted = asset['deleted']
+        asset_name = asset['params']['name']
+        ipfs_hash = asset['params']['url']
         last_config_tnx = myindexer.search_asset_transactions(asset_id,txn_type='acfg')['transactions'][-1]
         if 'note' in last_config_tnx and not is_deleted:
             print(f"ASA ID {asset_id}: metadata found - adding.")
@@ -42,7 +46,7 @@ def write_meta_data_to_files(indexer, public_key):
                 json_string = base64.b64decode(last_config_tnx['note']).decode('utf-8')
                 json_file.write(json_string)
                 json_data_as_dict = json.loads(json_string)
-                data.append((asset_id, json_data_as_dict))
+                data.append((asset_id, asset_name, ipfs_hash, json_data_as_dict))
         else:
             print(f"ASA ID {asset_id}: no metadata found.")
 
@@ -56,8 +60,19 @@ def write_csv_file(data):
     attribute_keys = []
     arc69_base_attributes = CSV_BASE_ATTRIBUTES.split(',') if CSV_BASE_ATTRIBUTES else ''
 
-    for asset_id, asset in sortedData:
+    for asset_id, asset_name, ipfs_hash, asset in sortedData:
         new_asset = {}
+
+        if CSV_ADD_ASSET_NAME and asset_name:
+            new_asset['name'] = asset_name
+            if 'name' not in attribute_keys:
+                attribute_keys.append('name')
+
+
+        if CSV_ADD_IPFS_HASH and ipfs_hash:
+            new_asset['cid'] = ipfs_hash
+            if 'cid' not in attribute_keys:
+                attribute_keys.append('cid')
 
         if arc69_base_attributes:
             for base_attribute in arc69_base_attributes:

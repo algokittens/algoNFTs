@@ -29,6 +29,12 @@ or mulitple with comma seperation
 
 ```CSV_BASE_ATTRIBUTES = "standard,description,external_url"```
 
+also CID (ipfs hash) and asset name can be added to csv output:
+
+```CSV_ADD_ASSET_NAME = True```
+
+```CSV_ADD_IPFS_HASH = True```
+
 
 
 ## d) Define if the testnet should be used
