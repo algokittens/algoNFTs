@@ -140,7 +140,7 @@ def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_nu
 
         decimals=0)
 
-    exit()
+
     # Sign with secret key of creator
     stxn = txn.sign(accounts[1]['sk'])
     
