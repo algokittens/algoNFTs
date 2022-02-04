@@ -25,16 +25,21 @@ api_secret = "" #your pinata secret
 mnemonic1 = ""
 external_url = ""
 description = ""
-use_csv_description = True #set to true if you have a "description" column in your csv that should be used as meta arc69 description
+
+# SETTINGS RELEVANT FOR CSV META_TYPE ONLY
+use_csv_asset_name = True #set True if you have a "name" column in your csv with the Asset Name
+use_csv_cid = True #set True if you have a "cid" column with ipfs hash in your csv
+use_csv_description = True #set to True if you have a "description" column in your csv that should be used as meta arc69 description
+
 
 if (meta_type=="csv"):
-    df = pd.read_csv(meta_path)    
+    df = pd.read_csv(meta_path)   
 
 elif (meta_type=="JonBecker"):
     df = pd.read_json(meta_path)    
 
 elif (meta_type=="HashLips"):
-    df = pd.read_json(meta_path)    
-    
+    df = pd.read_json(meta_path)
+
 for n in range(0,len(df)):
-    mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_number_digits, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, use_csv_description, testnet=testnet)
+    mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_number_digits, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, use_csv_asset_name, use_csv_cid, use_csv_description, testnet=testnet)
