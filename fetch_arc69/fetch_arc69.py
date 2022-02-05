@@ -16,6 +16,7 @@ from algosdk.v2client import indexer
 PUBLIC_KEY = "YOUR_PUBLIC_KEY"
 OUTPUT_PATH = "./output_path/"
 CSV_BASE_ATTRIBUTES = "description" #set ARC69 base attributes you want to add to csv e.g. "description,external_url" or "" for none
+CSV_ADD_ASSET_ID = True #Adds id of the asset to csv
 CSV_ADD_ASSET_NAME = True #Adds name of the asset to csv
 CSV_ADD_IPFS_HASH = True #Adds cid column to csv
 TESTNET = False
@@ -62,6 +63,11 @@ def write_csv_file(data):
 
     for asset_id, asset_name, ipfs_hash, asset in sortedData:
         new_asset = {}
+
+        if CSV_ADD_ASSET_ID and asset_id:
+            new_asset['id'] = asset_id
+            if 'id' not in attribute_keys:
+                attribute_keys.append('id')
 
         if CSV_ADD_ASSET_NAME and asset_name:
             new_asset['name'] = asset_name

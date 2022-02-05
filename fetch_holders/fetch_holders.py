@@ -15,7 +15,7 @@ path_out = "/home/algokittens/GANG_holders.csv"
 testnet = False
 
 
-if (testnet==False):    
+if (testnet==False):
     indexer_address = "https://algoexplorerapi.io/idx2"
 
 
