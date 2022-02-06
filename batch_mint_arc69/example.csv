@@ -1,9 +1,9 @@
-description,face,body,background,left eye,right eye,Portal A,Portal B,left upper arm,right upper arm,left lower arm,right lower arm,bird,writing,rainbow
-bins description1,stupid,juggl'er,Fire,Meditative green & blue,Ruminating,4-eyed Blue Face,Blue-Yellow Stripes,None,Broken Finger,Free hugs,None,Stupid Bird #2,None,None
-bins description2,stupid,Weird,Midday,Meditative green & blue,Blissed-out,Green-Red-Yellow Stripes,3-eyed Blue Monster,Talk to the hand,Riding the wave,None,Broken Pinky,Stupid Bird #2,None,None
-bins description3,sad,sad,Midday,Staring green & blue,Fierce,White Face Plain,Green-Red-Yellow Stripes,T-rex,Chubby fingers,Mitten,Free hugs,Stupid Bird #4,None,None
-bins description4,sad,stupid,Midday,Meditative green & blue,Blissed-out,Red-Green Bars,Green-Red-Yellow Stripes,None,All-seeing wave,Pointing,Free hugs,Stupid Bird #3,None,None
-bins description5,juggler,Weird,Midday,Meditative red & blue,Ruminating,Green-Red-Yellow Stripes,Red-Green Bars,T-rex,Riding the wave,None,Mitten,Stupid Bird #4,None,None
-bins description,stupid,Weird,Rock,Meditative red & blue,Blissed-out,2-eyed Blue Monster,Red-Green Bars,T-rex,All-seeing wave,None,Pointing,Stupid Bird #1,None,None
-bins description #6,stupid,sad,Rock,Staring blue & yellow,Blissed-out,Green-Red-Yellow Stripes,White Face Plain,Chubby fingers,T-rex,Mitten,Free hugs,Stupid Bird #3,aer,None
-bins description #7,stupid,sad,Rock,Hidden,Fierce,3-eyed Yellow Face,2-eyed Green Monster,Chubby fingers,None,Mitte'n,None,None,None,None
+face,body,background,left eye,right eye,Portal A,Portal B,left upper arm,right upper arm,left lower arm,right lower arm,bird,writing,rainbow
+stupid,juggler,Fire,Meditative green & blue,Ruminating,4-eyed Blue Face,Blue-Yellow Stripes,None,Broken Finger,Free hugs,None,Stupid Bird #2,None,None
+stupid,Weird,Midday,Meditative green & blue,Blissed-out,Green-Red-Yellow Stripes,3-eyed Blue Monster,Talk to the hand,Riding the wave,None,Broken Pinky,Stupid Bird #2,None,None
+sad,sad,Midday,Staring green & blue,Fierce,White Face Plain,Green-Red-Yellow Stripes,T-rex,Chubby fingers,Mitten,Free hugs,Stupid Bird #4,None,None
+sad,stupid,Midday,Meditative green & blue,Blissed-out,Red-Green Bars,Green-Red-Yellow Stripes,None,All-seeing wave,Pointing,Free hugs,Stupid Bird #3,None,None
+juggler,Weird,Midday,Meditative red & blue,Ruminating,Green-Red-Yellow Stripes,Red-Green Bars,T-rex,Riding the wave,None,Mitten,Stupid Bird #4,None,None
+stupid,Weird,Rock,Meditative red & blue,Blissed-out,2-eyed Blue Monster,Red-Green Bars,T-rex,All-seeing wave,None,Pointing,Stupid Bird #1,None,None
+stupid,sad,Rock,Staring blue & yellow,Blissed-out,Green-Red-Yellow Stripes,White Face Plain,Chubby fingers,T-rex,Mitten,Free hugs,Stupid Bird #3,aer,None
+stupid,sad,Rock,Hidden,Fierce,3-eyed Yellow Face,2-eyed Green Monster,Chubby fingers,None,Mitten,None,None,None,None
