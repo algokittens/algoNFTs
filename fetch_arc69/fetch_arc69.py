@@ -10,6 +10,7 @@ import os
 import json
 import csv
 from algosdk.v2client import indexer
+from lib.settings import Settings
 
 
 ## USER SETTINGS ##
@@ -22,7 +23,7 @@ CSV_ADD_IPFS_HASH = True #Adds cid column to csv
 TESTNET = False
 ##################
 
-INDEXER_ADDRESS = "https://testnet.algoexplorerapi.io/idx2" if TESTNET else "https://algoexplorerapi.io/idx2"
+INDEXER_ADDRESS = Settings().get_indexer_address()
 ALGOD_TOKEN = ""
 HEADERS = {'User-Agent': 'py-algorand-sdk'}
 

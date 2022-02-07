@@ -1,0 +1,19 @@
+testnet: true
+
+indexer_address:
+    testnet: "https://testnet.algoexplorerapi.io/idx2"
+    mainnet: "https://algoexplorerapi.io/idx2"
+
+default_output_folder: "./output"
+
+batch_add:
+
+batch_mint_arc69:
+
+batch_update_arc69:
+
+fetch_arc69:
+
+fetch_holders:
+    test:
+
