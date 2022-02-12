@@ -1,5 +1,4 @@
 import yaml
-from pathlib import Path
 import os
 from algosdk.v2client import indexer
 

@@ -14,6 +14,7 @@ current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfra
 parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir) 
 from lib.settings import Settings
+from lib.file_helper import check_and_create_path
 
 
 settings = Settings('fetch_arc69')
@@ -94,11 +95,6 @@ def write_csv_file(data):
         wr.writerows(converted_data)
 
     print(f"Script complete - output can be found here: {OUTPUT_PATH}")
-
-
-def check_and_create_path(file_path):
-    if not os.path.exists(os.path.dirname(file_path)):
-        os.makedirs(os.path.dirname(file_path))
 
 
 write_meta_data_to_files()
