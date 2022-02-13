@@ -1,7 +1,7 @@
 import yaml
 import os
 from algosdk.v2client import indexer
-
+from algosdk.v2client import algod
 
 class Settings:
 
@@ -17,8 +17,10 @@ class Settings:
         
         if self.full_settings['testnet']:
             self.indexer_address = self.full_settings['indexer_address']['testnet']
+            self.algod_address = self.full_settings['algod_address']['testnet']
         else:
             self.indexer_address = self.full_settings['indexer_address']['mainnet']
+            self.algod_address = self.full_settings['algod_address']['mainnet']
         self.context_settings = self.full_settings[self.settings_key]
     
     def get_indexer(self):
@@ -26,6 +28,10 @@ class Settings:
         headers = {'User-Agent': 'py-algorand-sdk'}
         return indexer.IndexerClient(indexer_token="", headers=headers, indexer_address=indexer_address)
 
+    def get_algod_client(self):
+        indexer_address = self.algod_address
+        headers = {'User-Agent': 'py-algorand-sdk'}
+        return algod.AlgodClient(algod_token="", algod_address=indexer_address, headers=headers);    
 
     def __getattr__(self, name):
         return self.context_settings[name]
