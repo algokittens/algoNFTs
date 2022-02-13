@@ -1,7 +1,7 @@
 import yaml
 import os
-from algosdk.v2client import indexer
-from algosdk.v2client import algod
+from algosdk.v2client import indexer, algod
+from algosdk import mnemonic
 
 class Settings:
 
@@ -40,3 +40,12 @@ class Settings:
     def get_output_folder(self):
         root_path = os.path.abspath(os.path.dirname(__file__) + '/../')
         return os.path.join(root_path, self.full_settings['default_output_folder'], self.settings_key)
+
+    def get_private_key(self):
+        pass_phrase = self.context_settings['mnemonic1']
+        return mnemonic.to_private_key(pass_phrase.replace(',', ''))
+    
+    def get_public_key(self):
+        pass_phrase = self.context_settings['mnemonic1']
+        return mnemonic.to_public_key(pass_phrase.replace(',', ''))
+
