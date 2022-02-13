@@ -31,10 +31,8 @@ def mint_asset(n, settings: Settings):
         if 'asset_id' in items: items.pop('asset_id')
         csv_asset_name = items.pop('asset_name') if 'asset_name' in items else ''
         csv_ipfs_url = items.pop('ipfs_url') if 'ipfs_url' in items else ''
+        csv_description = items.pop('description') if 'description' in items else ''
         csv_external_url = items.pop('external_url') if 'external_url' in items else ''
-        # "description" column might possibly be a arc69 property
-        if settings.use_csv_description:
-            csv_description = items.pop('description') if 'description' in items else ''
         attributes =  items.to_dict()
     
     elif (settings.meta_type == "JonBecker"):
