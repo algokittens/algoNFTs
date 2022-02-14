@@ -5,7 +5,6 @@ Created on Sat Oct 16 13:33:47 2021
 @author: AlgoKittens
 """
 import json
-from algosdk import mnemonic
 from algosdk.future.transaction import AssetConfigTxn
 import os, glob, sys, inspect
 import pandas as pd
@@ -17,8 +16,11 @@ sys.path.insert(0, parent_dir)
 from lib.settings import Settings
 from lib.algod_helper import wait_for_confirmation, print_created_asset
 
+settings = Settings('batch_mint_arc69')
+pk = settings.get_public_key()
+sk = settings.get_private_key()
 
-def mint_asset(n, settings: Settings):
+def mint_asset(n):
     if not settings.use_csv_ipfs_url:
         pinata_ipfs_cid = get_cid_from_pinata(n, settings.image_path, settings.api_key, settings.api_secret)
 
@@ -62,18 +64,7 @@ def mint_asset(n, settings: Settings):
 
     meta_data_json = json.dumps(meta_data)
             
-    # an accounts dict.
-    accounts = {}
-    counter = 1
-    for pass_phrase in [settings.mnemonic1]:
-        pass_phrase = pass_phrase.replace(',', '')
-        accounts[counter] = {}
-        accounts[counter]['pk'] = mnemonic.to_public_key(pass_phrase)
-        accounts[counter]['sk'] = mnemonic.to_private_key(pass_phrase)
-        counter += 1
-    
-    
-    print("Account 1 address: {}".format(accounts[1]['pk']))
+    print("Account 1 address: {}".format(pk))
     
     algod_client = settings.get_algod_client()
     # CREATE ASSET
@@ -88,14 +79,14 @@ def mint_asset(n, settings: Settings):
     url = csv_ipfs_url if settings.use_csv_ipfs_url else f"ipfs://{pinata_ipfs_cid}"
 
     txn = AssetConfigTxn(
-        sender=accounts[1]['pk'],
+        sender=pk,
         sp=params,
         total=1,
         default_frozen=False,
         unit_name=unit_name,
         asset_name=asset_name, 
-        manager=accounts[1]['pk'],
-        reserve=accounts[1]['pk'],
+        manager=pk,
+        reserve=pk,
         freeze=None,
         clawback=None,
         strict_empty_address_check=False,
@@ -104,12 +95,12 @@ def mint_asset(n, settings: Settings):
         note = meta_data_json.encode(),
         decimals=0)
 
-    sign_and_send_txn(accounts, algod_client, txn)
+    sign_and_send_txn(algod_client, txn)
 
 
-def sign_and_send_txn(accounts, algod_client, txn):
+def sign_and_send_txn(algod_client, txn):
     # Sign with secret key of creator
-    stxn = txn.sign(accounts[1]['sk'])
+    stxn = txn.sign(sk)
     
     # Send the transaction to the network and retrieve the txid.
     txid = algod_client.send_transaction(stxn)
@@ -129,7 +120,7 @@ def sign_and_send_txn(accounts, algod_client, txn):
         # Get the new asset's information from the creator account
         ptx = algod_client.pending_transaction_info(txid)
         asset_id = ptx["asset-index"]
-        print_created_asset(algod_client, accounts[1]['pk'], asset_id)
+        print_created_asset(algod_client, pk, asset_id)
     except Exception as e:
         print(e)
 

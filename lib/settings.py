@@ -4,9 +4,16 @@ from algosdk.v2client import indexer, algod
 from algosdk import mnemonic
 
 class Settings:
+    INDEXER_ADDRESSES = {
+        "testnet": "https://testnet.algoexplorerapi.io/idx2",
+        "mainnet": "https://algoexplorerapi.io/idx2"
+    }
+    ALGOD_ADDRESSES = {
+        "testnet": "https://api.testnet.algoexplorer.io",
+        "mainnet": "https://api.algoexplorer.io"
+    }
 
     full_settings = {}
-    indexer_address = ''
 
     def __init__(self, settings_key):
         self.settings_key = settings_key
@@ -16,11 +23,11 @@ class Settings:
             self.full_settings = yaml.safe_load(file)
         
         if self.full_settings['testnet']:
-            self.indexer_address = self.full_settings['indexer_address']['testnet']
-            self.algod_address = self.full_settings['algod_address']['testnet']
+            self.indexer_address = self.INDEXER_ADDRESSES['testnet']
+            self.algod_address = self.ALGOD_ADDRESSES['testnet']
         else:
-            self.indexer_address = self.full_settings['indexer_address']['mainnet']
-            self.algod_address = self.full_settings['algod_address']['mainnet']
+            self.indexer_address = self.INDEXER_ADDRESSES['mainnet']
+            self.algod_address = self.ALGOD_ADDRESSES['mainnet']
         self.context_settings = self.full_settings[self.settings_key]
     
     def get_indexer(self):

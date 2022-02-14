@@ -27,4 +27,4 @@ elif (settings.meta_type == "HashLips"):
     df = pd.read_json(settings.meta_path)
 
 for n in range(0,len(df)):
-    mint_asset (n, settings)
+    mint_asset (n)

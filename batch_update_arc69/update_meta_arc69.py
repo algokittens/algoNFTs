@@ -4,7 +4,6 @@
 @author: algokittens
 """
 import json
-from algosdk import mnemonic
 from algosdk.future.transaction import AssetConfigTxn
 import pandas as pd 
 import os, sys, inspect
@@ -16,6 +15,8 @@ from lib.settings import Settings
 from lib.algod_helper import wait_for_confirmation, print_created_asset, print_asset_holding
 
 settings = Settings('batch_update_arc69')
+pk = settings.get_public_key()
+sk = settings.get_private_key()
 
 def run_script():
     if settings.input_path.endswith('.csv'):
@@ -58,10 +59,6 @@ def update_meta(n):
 
 
 def send_algod_request(asset_id, meta_data_json):
-    pass_phrase = settings.mnemonic1.replace(',','')
-    pk = mnemonic.to_public_key(pass_phrase)
-    sk = mnemonic.to_private_key(pass_phrase)
-    
     algod_client = settings.get_algod_client()
 
     print("Account 1 address: {}".format(pk))
