@@ -1,0 +1,35 @@
+testnet: true
+
+indexer_address:
+    testnet: "https://testnet.algoexplorerapi.io/idx2"
+    mainnet: "https://algoexplorerapi.io/idx2"
+
+default_output_folder: "output"
+
+batch_add:
+
+batch_mint_arc69:
+
+batch_update_arc69:
+
+fetch_arc69:
+    public_key: "YOUR_PUB_KEY"
+    csv:
+        # Adds id of the asset to csv
+        add_asset_id: true
+        
+        # Adds name of the asset to csv
+        add_asset_name: true
+        
+        # Adds ipfs cid column to csv
+        add_ipfs_url: true
+        
+        # Set ARC69 base attributes you want to add to csv e.g. "description,external_url" or "" for none
+        # Important: to be able to add them they must be present in your metadata
+        # see here for further attributes: https://github.com/algokittens/arc69
+        base_attributes: "description,external_url" 
+
+
+fetch_holders:
+    test: 'huhu'
+

@@ -5,42 +5,48 @@ Created on Sat Oct 16 13:33:47 2021
 @author: AlgoKittens
 """
 import json
-from algosdk import mnemonic
 from algosdk.future.transaction import AssetConfigTxn
-from algosdk.v2client import algod
-import os, glob
+import os, glob, sys, inspect
 import pandas as pd
 from natsort import natsorted
 import requests
+current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir) 
+from lib.settings import Settings
+from lib.algod_helper import wait_for_confirmation, print_created_asset
 
+settings = Settings('batch_mint_arc69')
+pk = settings.get_public_key()
+sk = settings.get_private_key()
 
-def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_number_digits, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, use_csv_asset_name, use_csv_cid, use_csv_description, testnet=True):
-    if not use_csv_cid:
-        ipfs_cid = get_cid_from_pinata(n, image_path, api_key, api_secret)
+def mint_asset(n):
+    if not settings.use_csv_ipfs_url:
+        pinata_ipfs_cid = get_cid_from_pinata(n, settings.image_path, settings.api_key, settings.api_secret)
 
-    if (meta_type=="csv"):
-        d = pd.read_csv(meta_path)    
+    if (settings.meta_type == "csv"):
+        d = pd.read_csv(settings.meta_path)    
         items = d.iloc[n]
         items = items[items != "None"]
         items = items.dropna()
         items = items.apply(str)
-        if use_csv_asset_name:
-            csv_asset_name = items.pop('name')
-        if use_csv_cid:
-            csv_ipfs_url = items.pop('cid')
-        if use_csv_description:
-            description = items.pop('description')
+        # Handle csv data that shouldn't show up in arc69 properties
+        if 'asset_id' in items: items.pop('asset_id')
+        csv_asset_name = items.pop('asset_name') if 'asset_name' in items else ''
+        csv_ipfs_url = items.pop('ipfs_url') if 'ipfs_url' in items else ''
+        csv_description = items.pop('description') if 'description' in items else ''
+        csv_external_url = items.pop('external_url') if 'external_url' in items else ''
         attributes =  items.to_dict()
     
-    elif (meta_type=="JonBecker"):
-        d = pd.read_json(meta_path)    
+    elif (settings.meta_type == "JonBecker"):
+        d = pd.read_json(settings.meta_path)    
         d.drop('tokenId', axis=1, inplace=True)
         items = d.iloc[n]
         items = items[items != "None"]
         attributes = items.to_dict()
     
-    elif (meta_type=="HashLips"):
-        d = pd.read_json(meta_path)
+    elif (settings.meta_type == "HashLips"):
+        d = pd.read_json(settings.meta_path)
         l = d['attributes'][n]
         records = pd.DataFrame.from_records(l).set_index('trait_type')
         attributes = records.iloc[:,0].to_dict()
@@ -48,8 +54,8 @@ def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_nu
 
     meta_data = {
         "standard": "arc69",
-        "description": description,
-        "external_url": external_url,
+        "description": csv_description if settings.use_csv_description else settings.description,
+        "external_url": csv_external_url if settings.use_csv_external_url else settings.external_url,
         "properties": attributes
     }
 
@@ -58,60 +64,9 @@ def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_nu
 
     meta_data_json = json.dumps(meta_data)
             
-    # an accounts dict.
-    accounts = {}
-    counter = 1
-    for m in [mnemonic1]:
-        accounts[counter] = {}
-        accounts[counter]['pk'] = mnemonic.to_public_key(m)
-        accounts[counter]['sk'] = mnemonic.to_private_key(m)
-        counter += 1
+    print("Account 1 address: {}".format(pk))
     
-    
-    if (testnet==True):
-        algod_address = "https://api.testnet.algoexplorer.io"
-    elif (testnet==False):
-        algod_address = "https://api.algoexplorer.io"
-        
-    algod_token = ""
-    headers = {'User-Agent': 'py-algorand-sdk'}
-    algod_client = algod.AlgodClient(algod_token, algod_address, headers);    
-    status = algod_client.status()
-    
-    
-    def wait_for_confirmation(client, txid):
-        """
-        Utility function to wait until the transaction is
-        confirmed before proceeding.
-        """
-        last_round = client.status().get('last-round')
-        txinfo = client.pending_transaction_info(txid)
-        while not (txinfo.get('confirmed-round') and txinfo.get('confirmed-round') > 0):
-            print("Waiting for confirmation")
-            last_round += 1
-            client.status_after_block(last_round)
-            txinfo = client.pending_transaction_info(txid)
-        print("Transaction {} confirmed in round {}.".format(txid, txinfo.get('confirmed-round')))
-        return txinfo
-    
-    #   Utility function used to print created asset for account and assetid
-    def print_created_asset(algodclient, account, assetid):    
-        # note: if you have an indexer instance available it is easier to just use this
-        # response = myindexer.accounts(asset_id = assetid)
-        # then use 'account_info['created-assets'][0] to get info on the created asset
-        account_info = algodclient.account_info(account)
-        idx = 0
-        for my_account_info in account_info['created-assets']:
-            scrutinized_asset = account_info['created-assets'][idx]
-            idx = idx + 1       
-            if (scrutinized_asset['index'] == assetid):
-                print("Asset ID: {}".format(scrutinized_asset['index']))
-                print(json.dumps(my_account_info['params'], indent=4))
-                break
-    
-    print("Account 1 address: {}".format(accounts[1]['pk']))
-    
-    
+    algod_client = settings.get_algod_client()
     # CREATE ASSET
     # Get network params for transactions before every transaction.
     params = algod_client.suggested_params()
@@ -119,30 +74,33 @@ def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_nu
     params.fee = 1000
     params.flat_fee = True
     asset_number = str(n+1)
-    asset_name = csv_asset_name if use_csv_asset_name else asset_name + asset_number.zfill(asset_name_number_digits)
-    url = csv_ipfs_url if use_csv_cid else f"ipfs://${ipfs_cid}"
+    asset_name = csv_asset_name if settings.use_csv_asset_name else settings.asset_name + asset_number.zfill(settings.asset_name_number_digits)
+    unit_name = settings.unit_name + asset_number.zfill(settings.unit_name_number_digits)
+    url = csv_ipfs_url if settings.use_csv_ipfs_url else f"ipfs://{pinata_ipfs_cid}"
 
     txn = AssetConfigTxn(
-        sender=accounts[1]['pk'],
+        sender=pk,
         sp=params,
-        total= 1,
+        total=1,
         default_frozen=False,
-        unit_name=unit_name + asset_number.zfill(unit_name_number_digits),
+        unit_name=unit_name,
         asset_name=asset_name, 
-        manager=accounts[1]['pk'],
-        reserve=accounts[1]['pk'],
+        manager=pk,
+        reserve=pk,
         freeze=None,
         clawback=None,
         strict_empty_address_check=False,
         url=url,
         metadata_hash= "", 
         note = meta_data_json.encode(),
-
         decimals=0)
 
+    sign_and_send_txn(algod_client, txn)
 
+
+def sign_and_send_txn(algod_client, txn):
     # Sign with secret key of creator
-    stxn = txn.sign(accounts[1]['sk'])
+    stxn = txn.sign(sk)
     
     # Send the transaction to the network and retrieve the txid.
     txid = algod_client.send_transaction(stxn)
@@ -162,9 +120,10 @@ def mint_asset (n, unit_name, asset_name, unit_name_number_digits, asset_name_nu
         # Get the new asset's information from the creator account
         ptx = algod_client.pending_transaction_info(txid)
         asset_id = ptx["asset-index"]
-        print_created_asset(algod_client, accounts[1]['pk'], asset_id)
+        print_created_asset(algod_client, pk, asset_id)
     except Exception as e:
         print(e)
+
 
 def get_cid_from_pinata(n, image_path, api_key, api_secret):
     imgs = natsorted(glob.glob(os.path.join(image_path, "*.png")))
