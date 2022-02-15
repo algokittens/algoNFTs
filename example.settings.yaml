@@ -1,35 +1,61 @@
 testnet: true
 
-indexer_address:
-    testnet: "https://testnet.algoexplorerapi.io/idx2"
-    mainnet: "https://algoexplorerapi.io/idx2"
-
 default_output_folder: "output"
 
-batch_add:
 
 batch_mint_arc69:
+    mnemonic1: "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
+    api_key: "" #your pinata key
+    api_secret: "" #your pinata secret
+    meta_path: "e:/algoNFTs/output/fetch_arc69/example_export.csv" #location of metadata
+    meta_type: "csv" #metadata type, valid argments = "csv", "JonBecker", "HashLips"
+    image_path: "e:/hashlips_art_engine/build/images" #location of images
+    unit_name: "HAI"
+    unit_name_number_digits: 0 #set number of digits for unit_name e.g. 4 will result in: TST0001 or TST0999 - leave at zero to increment without leading zero(s)
+    asset_name: "Hai Happen Gen 2 No. "
+    asset_name_number_digits: 0 #set number of digits for asset_name e.g. 4 will result in: Test NFT #0001 or Test NFT #0999 - leave at zero to increment without leading zero(s)
+    external_url: ""
+    description: "Hai Happen and his Gang"
+
+    # Settings relevant for "csv" meta_type ONLY!
+    use_csv_asset_name: false #set true if you have a "asset_name" column in your csv you want to use
+    use_csv_ipfs_url: false #set true if you have a "ipfs_url" column with ipfs url in your csv you want to use
+    use_csv_description: false #set to true if you have a "description" column in your csv you want to use
+    use_csv_external_url: true #set to true if you have a "external_url" column in your csv you want to use
+
 
 batch_update_arc69:
+    mnemonic1: "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
+    # if input_path is not a path to a csv File script will handle it as folder with arc69 json files
+    # if inputpath contains metadata as jsons, each filname has to have the asset id as filename with ".json" ending
+    #input_path: "e:/algoNFTs/output/fetch_arc69"
+    input_path: "e:/algoNFTs/batch_update_arc69/example_data/example_NFT.csv"
+    # Settings relevant for csv input_path ONLY!
+    csv:
+        external_url: "yourwebsite.com"
+        description: "some cool description"
+        update_all: true #if true updates every NFT in the csv
+        row_to_update: 1 #update only the asset in the first row of the csv
+
+
+batch_add:
+    mnemonic1: "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
+    input_path: "e:/algoNFTs/batch_add/example_add.csv"
+
 
 fetch_arc69:
-    public_key: "YOUR_PUB_KEY"
+    public_key: "KKBVJLXALCENRXQNEZC44F4NQWGIEFKKIHLDQNBGDHIM73F44LAN7IAE5Q"
     csv:
-        # Adds id of the asset to csv
-        add_asset_id: true
-        
-        # Adds name of the asset to csv
-        add_asset_name: true
-        
-        # Adds ipfs cid column to csv
-        add_ipfs_url: true
+        add_asset_id: false #adds column "asset_id" to csv
+        add_asset_name: false #adds column "asset_name" to csv
+        add_ipfs_url: false #adds column "ipfs_url" to csv
         
         # Set ARC69 base attributes you want to add to csv e.g. "description,external_url" or "" for none
         # Important: to be able to add them they must be present in your metadata
         # see here for further attributes: https://github.com/algokittens/arc69
-        base_attributes: "description,external_url" 
+        base_attributes: "" 
 
 
 fetch_holders:
-    test: 'huhu'
+    public_key: "TIMPJ6P5FZRNNKYJLAYD44XFOSUWEOUAR6NRWJMQR66BRM3QH7UUWEHA24"
 

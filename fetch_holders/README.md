@@ -3,33 +3,18 @@
 # Overview
 This pipeline will fetch all the holders of assets created by a provided creator address. If an holder holds more than one asset by the creator, the holder address will appear multiple times in the csv.
 
-This pipeline requires two dependencies which have to be installed prior to running.
+# Download & Installation
 
-AlgoSDK which can be installed using [PIP](https://pypi.org/), by opening your terminal and running the following:
+Make sure you downloaded the whole repository and followed the steps in the main [readme](../README.md).
 
-```pip3 install py-algorand-sdk```
+# Adjust settings.yaml
 
-and Pandas which can be installed using Anaconda, by opening the anaconda terminal and running the following:
+Using Spyder (or your favourite IDE) open "settings.yaml". All changes should be made within this file unless you need to add some additional specifications.
+```
+fetch_holders:
+    public_key: "TIMPJ6P5FZRNNKYJLAYD44XFOSUWEOUAR6NRWJMQR66BRM3QH7UUWEHA24"
+```
 
-```conda install pandas```
-
-
-# Preparing the script
-
-## a) Define public key
-
-``` pk = "GANGAAWKBJBWQJIIETTLWQT7ZFGPC4UDIITNGP55BCQPB26IEMOPOHQMEA" ```
-
-
-## b) Define were the file should be saved
-
-```path_out = "/home/algokittens/GANG_holders.csv"```
-
-
-
-## c) Define if the testnet should be used
-
-```testnet = False ```
 
 
 # Running the script
