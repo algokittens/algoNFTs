@@ -8,28 +8,23 @@ Created on Thu Sep 23 23:07:24 2021
 
 from mint_arc69 import mint_asset
 import pandas as pd 
+import os,sys,inspect
+current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir) 
+from lib.settings import Settings
 
-testnet= True
 
-meta_path = "/media/phyto/1TB_HD/Batchguide/example_NFT.csv" #location of metadata
-meta_type = "csv" #metadata type, valid argments = "csv", "JonBecker", "HashLips"
-image_path = "/media/phyto/1TB_HD/Batchguide/images" #location of images
-unit_name = "TST"
-asset_name = "Test NFT #"
-api_key = "" #your pinata key
-api_secret = "" #your pinata secret
-mnemonic1 = ""
-external_url = ""
-description = ""
+settings = Settings('batch_mint_arc69')
 
-if (meta_type=="csv"):
-    df = pd.read_csv(meta_path)    
+if (settings.meta_type == "csv"):
+    df = pd.read_csv(settings.meta_path)   
 
-elif (meta_type=="JonBecker"):
-    df = pd.read_json(meta_path)    
+elif (settings.meta_type == "JonBecker"):
+    df = pd.read_json(settings.meta_path)    
 
-elif (meta_type=="HashLips"):
-    df = pd.read_json(meta_path)    
-    
+elif (settings.meta_type == "HashLips"):
+    df = pd.read_json(settings.meta_path)
+
 for n in range(0,len(df)):
-    mint_asset (n, unit_name, asset_name, mnemonic1, image_path, meta_path, meta_type, api_key, api_secret, external_url, description, testnet=testnet)
+    mint_asset (n)

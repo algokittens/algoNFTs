@@ -7,37 +7,17 @@ This pipeline should only be ran on a secure machine, and we recommend checking 
 
 Please note that I write these guides and scripts in my spare time and they come with no warranty of any kind whatsoever.  
 
-## 1) Install Python
+# Download & Installation
 
-If you do not already have Python installed, install python using Anaconda: https://www.anaconda.com/products/individual. Installing just Miniconda is fine as we will not need the other packages.
+Make sure you downloaded the whole repository and followed the steps in the main [readme](../README.md).
 
-## 2) Install Python IDE
-We will use a Python IDE to update and run the scripts. Although if you develop in multiple languages https://code.visualstudio.com/ is a great alternative. 
-Spyder can be installed by opening the anaconda terminal and running the following:
-
-```conda install spyder```
-
-
-## 3) Install Python dependencies
-
-This pipeline requires two dependencies which have to be installed prior to running.
-
-AlgoSDK which can be installed using [PIP](https://pypi.org/) , by opening your terminal and running the following:
-
-```pip3 install py-algorand-sdk```
-
-and Pandas which can be installed using Anaconda, by opening the anaconda terminal and running the following:
-
-```conda install pandas```
-
-
-## 4) Prepare your data
-### Option A:
+# Prepare your data
+## Option A:
 The data format for this pipeline is csv, which can be generated from excel files by exporting to "comma separated values".
 
 For the spreadsheet, only the traits should be included as well as a column called 'ID' which should contain the ASA ID. None values should be called ```None```.
 
-### Option B:
+## Option B:
 Put your complete ARC69 metadata files in a folder. The metadata must be filled in according to the definition (see [example_data](example_data/arc69_data/)). 
 
 One of these two formats **MUST** be followed otherwise the script will not work. 
@@ -49,41 +29,44 @@ For this example we will update three example NFTs: 43432985, 43432860, and 4343
 
 The csv file can be found in the github directory and is entitled: "example_NFT.csv".
 
-## 1) Download "run_script.py" and "update_meta_arc69.py"
+## 1) Open settings.yaml
 
-Download both scripts and make sure that they are in the same folder. It very important that they are in same folder as otherwise the script will not work.
+Using Spyder (or your favourite IDE) open your `settings.yaml`. All changes should be made within this file rather than update_meta_arc69.py unless you need to add some additional specifications.
 
-## 2) Open "run_script.py"
+## 2) Edit settings.yaml
+These are the settings to adjust for this script to run properly:
 
-Using Spyder (or your favourite IDE) open "run_script.py". All changes should be made within this script rather than update_meta_arc69.py unless you need to add some additional specifications.
-
-## 2) Edit "run_script.py"
-
-### a) Add the path of your csv containing your metadata.
-
-``` image_path = r"C:/Users/AlgoKittens/example_NFT.csv" ```
-
-### b) Define the description.
-This description will be included in every asset. If left blank, no URL will be included:
-
-``` description = "your awesome description goes here"```
-
-### c) Define the external URL.
-This url will be included in every asset. If left blank, no URL will be included:
-
-``` external_url = "your_website.com"```
-
-### d) Define your mnemonic 
+```
+batch_update_arc69:
+    mnemonic1: "wreck floor carbon during ..."
+    input_path: "e:/algoNFTs/batch_update_arc69/example_data/example_NFT.csv"
+    # Settings relevant for csv input_path ONLY! (Option A)
+    csv:
+        external_url: "yourwebsite.com"
+        description: "some cool description"
+        update_all: true #if true updates every NFT in the csv
+        row_to_update: 1 #update only the asset in the first row of the csv
+```
+### a) Define your mnemonic 
 This is your algorand key. Included below is access to a testnet account containing no real algos. In reality this should not be shared with ANYONE.
 
 ```mnemonic1 = "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens" ```
 
-### e) Define testnet or mainnet
-The default is testnet. If you want to update on the mainnet set this to False:
+### b) Add the path of your csv containing your metadata.
 
-```testnet = True```
+``` input_path = r"C:/Users/AlgoKittens/example_NFT.csv" ```
 
-### f) Define items to update
+### c) Define the description ([Option A](#option-a) only)
+This description will be included in every asset. If left blank, no description will be included:
+
+``` description = "your awesome description goes here"```
+
+### d) Define the external URL ([Option A](#option-a) only)
+This url will be included in every asset. If left blank, no URL will be included:
+
+``` external_url = "your_website.com"```
+
+### e) Define items to update ([Option A](#option-a) only)
 Define if every NFT in the spreadsheet should be updated. If set to true, all assets will be updated.
 ```update_all = False```
 
@@ -91,7 +74,7 @@ If you only want to update a single row, define which row should be updated:
 
 ```row_to_update = 1 # this would update row 1```
 
-### g) Notes for preparation with [Option B](#option-b)
+### f) Notes for preparation with [Option B](#option-b)
 `external_url` and `description` will be ignored since your ARC69 files are considered complete.
 
 `update_all` and `row_to_update` will also be ignored. In case files shouldn't be used for update, they should be moved temporarily in a different directory.
