@@ -139,5 +139,5 @@ def get_cid_from_pinata(n, image_path, api_key, api_secret):
         
     response: requests.Response = requests.post(url=ipfs_url, files=files, headers=headers)
     meta = response.json()
-        
+    print(meta) #to confirm Pinata Storage limit has not been reached
     return meta['IpfsHash']
