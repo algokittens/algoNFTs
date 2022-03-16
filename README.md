@@ -66,3 +66,5 @@ The output folder for all scripts will be per default included in this folder. I
 
 ## Further Notice
 For more information on how to setup each script look at the given examples in your `settings.yaml` or the README.md of the corresponding script. You'll only need to setup scripts you're going to use.
+
+Finally you can check validity of your `settings.yaml` with http://www.yamllint.com/. Note also that it's necessary to use forward slashes `/` instead of backslashes in all path configurations.
