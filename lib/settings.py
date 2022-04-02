@@ -19,8 +19,19 @@ class Settings:
         self.settings_key = settings_key
         module_path = os.path.dirname(__file__)
         settings_path = os.path.join(module_path, '../settings.yaml')
+
+        settings_exists = os.path.exists(settings_path)
+
+        if not settings_exists:
+            print(f'Your settings.yaml could not be found here: {os.path.abspath(settings_path)}')
+            exit()
+
         with open(settings_path, 'r') as file:
-            self.full_settings = yaml.safe_load(file)
+            try:
+                self.full_settings = yaml.safe_load(file)
+            except:
+                print("Your settings.yaml is incorrectly formatted. Remember to use forward slashes in filepaths!")
+                exit()
         
         if self.full_settings['testnet']:
             self.indexer_address = self.INDEXER_ADDRESSES['testnet']

@@ -45,3 +45,5 @@ out_file = f"{OUTPUT_PATH}/{settings.public_key[0:5]}_holders_{date.isoformat(da
 check_and_create_path(out_file)
 
 data.to_csv(out_file, index=False)
+
+print(f'Holders saved to: {os.path.abspath(out_file)}')
