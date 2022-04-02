@@ -5,14 +5,14 @@ from algosdk import mnemonic
 
 class Settings:
     INDEXER_ADDRESSES = {
-        "testnet": "https://testnet.algoexplorerapi.io/idx2",
-        "mainnet": "https://algoexplorerapi.io/idx2"
+        "testnet": "https://algoindexer.testnet.algoexplorerapi.io",
+        "mainnet": "https://algoindexer.algoexplorerapi.io"
     }
     ALGOD_ADDRESSES = {
-        "testnet": "https://api.testnet.algoexplorer.io",
-        "mainnet": "https://api.algoexplorer.io"
+        "testnet": "https://node.testnet.algoexplorerapi.io",
+        "mainnet": "https://node.algoexplorerapi.io"
     }
-
+    
     full_settings = {}
 
     def __init__(self, settings_key):
