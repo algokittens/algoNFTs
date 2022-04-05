@@ -22,13 +22,13 @@ myindexer = settings.get_indexer()
 OUTPUT_PATH = settings.get_output_folder()
 
 def write_meta_data_to_files():
-    account = myindexer.account_info(address=settings.public_key)['account']
+    account = myindexer.lookup_account_asset_by_creator(address=settings.public_key, limit=10)
 
-    if not 'created-assets' in account:
+    if not 'assets' in account:
         print(f"No assets found in account: {settings.public_key} and {'testnet' if settings.full_settings['testnet'] else 'mainnet'}")
         exit()
 
-    created_assets = myindexer.account_info(address=settings.public_key)['account']['created-assets']
+    created_assets = myindexer.lookup_account_asset_by_creator(address=settings.public_key, limit=1000)['assets']
     #del created_assets[4:]
     data = []
     for asset in created_assets:
