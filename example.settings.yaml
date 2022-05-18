@@ -43,6 +43,11 @@ batch_add:
     input_path: "e:/algoNFTs/batch_add/example_add.csv"
 
 
+batch_remove:
+    mnemonic1: "wreck floor carbon during taste illegal cover amused staff middle firm surface daughter pool lab update steel trophy dad twenty near kite boss abstract lens"
+    input_path: "e:/algoNFTs/batch_add/example_remove.csv"
+
+
 fetch_arc69:
     public_key: "KKBVJLXALCENRXQNEZC44F4NQWGIEFKKIHLDQNBGDHIM73F44LAN7IAE5Q"
     csv:
