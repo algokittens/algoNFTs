@@ -11,10 +11,10 @@ Always run things on the testnet first, and it is strongly recommended to refer 
 ### c) Batch opt-into ASAs
 ### d) Fetch all holders of assets created by given address
 ### e) Fetch all asset information from an account as json or csv
+### f) Batch opt-out ASAs with zero balance
 
 ## In Progress:
 ### a) Batch transfer ASAs
-### b) Batch opt-out ASAs with zero balance
 
 ## Other resources:
 ### a) Random NFT art generator using Python:
