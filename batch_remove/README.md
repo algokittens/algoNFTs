@@ -1,4 +1,4 @@
-# Batch adding NFTs using python
+# Batch opt-out NFTs using python
 
 # Preparing the script
 
@@ -21,7 +21,7 @@ This is your algorand key. Included above is a testnet account containing no rea
 
 ### b) input_path
 
-This variable should point to the csv containing the assets to be added. It should contain no header and only the asset IDs to be added
+This variable should point to the csv containing the assets to be removed. It should contain no header and only the asset IDs to be added
 
 
 ### c) input_path
