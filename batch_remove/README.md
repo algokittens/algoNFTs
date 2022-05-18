@@ -24,7 +24,7 @@ This is your algorand key. Included above is a testnet account containing no rea
 This variable should point to the csv containing the assets to be removed. It should contain no header and only the asset IDs to be added
 
 
-### c) input_path
+### c) remove all flag
 This should be "True" or "False". If set to "True" the script will remove ALL assets with amount 0. If set to "False" only assets defined in the input_path will be removed.
 
 
