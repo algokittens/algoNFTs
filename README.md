@@ -64,6 +64,11 @@ The output folder for all scripts will be per default included in this folder. I
 
 `default_output_folder: "c:/somewhere/here"`
 
+## Video to get you started
+
+[![Watch the video](https://imgur.com/03peyg8.png)](https://youtu.be/6luGVcjB4qk)
+
+
 ## Further Notice
 For more information on how to setup each script look at the given examples in your `settings.yaml` or the README.md of the corresponding script. You'll only need to setup scripts you're going to use.
 
