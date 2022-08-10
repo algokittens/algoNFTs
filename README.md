@@ -1,3 +1,7 @@
+# Video to get you started
+
+[![Watch the video](https://imgur.com/03peyg8.png)](https://youtu.be/6luGVcjB4qk)
+
 # Overview
 
 # Intro
@@ -70,6 +74,5 @@ For more information on how to setup each script look at the given examples in y
 
 Finally you can check validity of your `settings.yaml` with http://www.yamllint.com/. Note also that it's necessary to use forward slashes `/` instead of backslashes in all path configurations.
 
-# Video to get you started
-
-[![Watch the video](https://imgur.com/03peyg8.png)](https://youtu.be/6luGVcjB4qk)
+## ARC19 minting scripts
+See: https://github.com/IzzyCapNFT/algorand-arc19-auto-mint (note we are not affiliated in any way so use at your own risk)
